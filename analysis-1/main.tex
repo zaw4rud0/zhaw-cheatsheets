@@ -1,0 +1,104 @@
+% Basic settings
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+% Layout settings
+\usepackage[top=1.5cm, bottom=1.5cm, left=1.5cm, right=1.5cm]{geometry}
+\usepackage[compact]{titlesec}
+\titlespacing{\section}{0pt}{0pt}{0pt}
+\titlespacing{\subsection}{0pt}{0pt}{0pt}
+\titlespacing{\subsubsection}{0pt}{0pt}{0pt}
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% Two columns
+\usepackage{multicol}
+
+% Package for tables
+\usepackage{tabulary,booktabs}
+
+% Colored boxes
+\usepackage[most]{tcolorbox}
+
+% package to get colored text
+\usepackage{xcolor}
+
+% A base set of colorbox that is then customised
+\tcbset {
+    base/.style={
+        boxrule=0mm,
+        leftrule=1mm,
+        left=1.75mm,
+        arc=0mm,
+        fonttitle=\bfseries,
+        colbacktitle=black!10!white,
+        coltitle=black,
+        toptitle=0.75mm,
+        bottomtitle=0.25mm,
+        title={#1}
+    }
+}
+
+% Box with red line for definitions
+\definecolor{bittersweet}{rgb}{1.0, 0.44, 0.37}
+\newtcolorbox{definition}[1]{
+    colframe=bittersweet,
+    base={#1}
+}
+
+% Box with blue line for mainboxes
+\definecolor{brandblue}{rgb}{0.34, 0.7, 1}
+\newtcolorbox{mainbox}[1]{
+    colframe=brandblue,
+    base={#1}
+}
+
+% Subboxes don't have any color
+\newtcolorbox{subbox}[1]{
+    colframe=black!20!white,
+    base={#1}
+}
+
+% Mathematical typesetting & symbols
+\usepackage{amsthm, mathtools, amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{bigints}
+\usepackage{mathtools}
+\usepackage{wasysym}
+
+% Math helper stuff
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\bigO}{\mathcal{O}}
+\renewcommand{\d}{\ \mathrm{d}}
+
+% Package to include images/sketches
+\usepackage{graphicx}
+% Path to graphics
+\graphicspath{{images/}}
+
+%###########################################################
+
+\begin{document}
+    \include{sections/funktionen}
+
+    \include{sections/polynome}
+
+    \include{sections/ableitung}
+
+    \include{sections/integrale}
+
+    \include{sections/folgen-und-reihen}
+
+    \include{sections/grenzwerte}
+
+    %\include{sections/anwendungen}
+
+\end{document}

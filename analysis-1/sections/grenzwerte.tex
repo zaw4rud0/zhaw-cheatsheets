@@ -1,0 +1,66 @@
+\section{Grenzwerte und Stetigkeit einer Funktion}\label{sec:grenzwerte-und-stetigkeit}
+
+\subsection{Grenzwert einer Funktion im Endlichen}\label{subsec:grenzwert-funktion-im-endlichen}
+
+\begin{definition}{Definition}
+    Wir betrachten eine Funktion $f(x)$ und eine Stelle $x_0$.
+    Dann bezeichnet der \emph{Grenzwert} $g$ von $f(x)$ an der Stelle $x_0$ denjenigen Wert, dem sich die Funktion annähert, wenn $x$ immer mehr gegen $x_{0}$ geht.
+
+    Wir schreiben dies als $\lim \limits_{x \rightarrow x_0} f(x) = g$ oder $f(x) \rightarrow g$ für $x \rightarrow x_0$.
+\end{definition}
+
+\textbf{Bemerkung:} Es ist nicht notwendig, dass die Funktion $f$ an der Stelle $x_0$ definiert ist.
+
+\begin{definition}{Rechenregeln für Grenzwerte}
+    \begin{itemize}
+        \item $\lim \limits_{x \rightarrow x_0} (c \cdot f(x)) = c \cdot \left( \lim \limits_{x \rightarrow x_0} f(x) \right)$ für $c \in \R$.
+        \item $\lim \limits_{x \rightarrow x_0} (f(x) + g(x)) = \lim \limits_{x \rightarrow x_0} f(x) + \lim \limits_{x \rightarrow x_0} g(x)$.
+        \item $\lim \limits_{x \rightarrow x_0} (f(x) - g(x)) = \lim \limits_{x \rightarrow x_0} f(x) - \lim \limits_{x \rightarrow x_0} g(x)$.
+        \item $\lim \limits_{x \rightarrow x_0} (f(x) \cdot g(x)) = \left( \lim \limits_{x \rightarrow x_0} f(x) \right) \cdot \left( \lim \limits_{x \rightarrow x_0} g(x) \right)$.
+        \item $\lim \limits_{x \rightarrow x_0} \frac{f(x)}{g(x)} = \frac{\lim \limits_{x \rightarrow x_0} f(x)}{\lim \limits_{x \rightarrow x_0} g(x)}$ mit der Voraussetzung, dass $\lim \limits_{x \rightarrow x_0} g(x) \neq 0$.
+    \end{itemize}
+\end{definition}
+
+\subsection{Grenzwerte von gebrochenrationalen Funktionen}\label{subsec:grenzwerte-gebrochenrationalen-funktionen}
+
+\subsection{Grenzwert einer Funktion im Unendlichen}\label{subsec:grenzwert-funktion-im-unendlichen}
+
+\begin{definition}{Definition}
+    Der Grenzwert $g$ einer Funktion $f(x)$ im Unendlichen bezeichnet denjenigen Wert, dem sich die Funktion annähert, wenn $x$ gegen unendlich geht.\\
+
+    Schreibweise: $\lim \limits_{x \rightarrow \infty} f(x) = g$\\
+    Analog: $f(x) \underset{x \rightarrow\infty}{\longrightarrow} g$
+\end{definition}
+
+\textbf{Beispiel:} $\lim \limits_{x \rightarrow \infty} \frac{x}{1 + x^2} = 0$
+
+\RIGHTarrow Begründung: Nennergrad $>$ Zählergrad, daher konvergiert die Funktion gegen 0.
+
+\subsection{Stetigkeit von Funktionen}\label{subsec:stetigkeit}
+
+\begin{definition}{Definition}
+    Eine Funktion $f(x)$ heisst \emph{stetig an der Stelle $x_0$}, wenn der Grenzwert $\lim \limits{x \rightarrow x_0} f(x)$ existiert und gleich $f(x_0)$ ist.
+\end{definition}
+
+\begin{definition}{Definition}
+    Eine Funktion $f(x)$ heisst \emph{stetig}, wenn sie an jeder Stelle ihres Definitionsbereichs stetig ist.
+\end{definition}
+
+\textbf{Einfache Vorstellung:} Eine Funktion ist auf einem Intervall $I$ stetig, wenn sich ihr Graph in einem Zug, ohne Absetzen, zeichnen lässt.
+
+\textbf{Bemerkung:} Viele Funktionen, die in der Praxis vorkommen, sind in ihrem Definitionsbereich stetig:
+\begin{itemize}
+    \item Polynomfunktionen
+    \item Rationale Funktionen
+    \item Trigonometrische Funktionen ($\tan(x)$, $\sin(x)$, $\cos(x)$)
+    \item Exponential- und Logarithmusfunktionen
+    \item Potenzfunktionen, Wurzelfunktionen
+\end{itemize}
+
+\begin{definition}{Satz}
+    Die Summe, die Differenz, das Produkt und die Komposition von stetigen Funktionen sind stetig.
+\end{definition}
+
+\begin{definition}{Satz}
+    Falls eine Funktion $f(x)$ auf einem Intervall $\left[a,b\right]$ stetig ist, und $f(a)$ und $f(b)$ verschiedene Vorzeichen haben, dann hat $f$ in diesem Intervall mindestens eine Nullstelle.
+\end{definition}

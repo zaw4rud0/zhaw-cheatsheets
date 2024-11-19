@@ -1,0 +1,105 @@
+\section{Ableitung}\label{sec:ableitung}
+
+\begin{definition}{Definition}
+    Die Funktion, die jeder Stelle $x$ den Wert $f'(x)$ zuordnet, wird \emph{Ableitungsfunktion} von $f$ genannt.
+    Es werden folgende Schreibweisen verwendet:
+    \begin{multicols}{5}
+        \begin{itemize}
+            \item $f'(x)$
+            \item $\frac{\d f}{\d x}$
+            \item $\frac{\d y}{\d x}$
+        \end{itemize}
+    \end{multicols}
+\end{definition}
+
+\begin{definition}{Satz}
+    Gegeben ist die Funktion $f(x) = c$ mit $c \in \R$.
+    Dann gilt: $f'(x) = 0$ für jedes $x \in \R$.
+\end{definition}
+
+\textbf{Begründung:} Die Steigung einer horizontalen Geraden ist an jeder Stelle $x$ gleich $0$.
+
+\begin{definition}{Satz}
+    Gegeben ist die Funktion $f(x) = x^k$ mit $k \neq 0$.
+    Dann gilt: $f'(x) = k \cdot x^{k-1}$.
+\end{definition}
+
+\begin{definition}{Ableitung höherer Ordnung}
+    Die \emph{zweite Ableitung} erhält man, indem man die Ableitungsfunktion noch einmal ableitet: \[f''(x) = \frac{\d^2 f}{\d x^2} = \frac{\d}{\d x}(f'(x))\]
+    Die \emph{dritte Ableitung} erhält man, indem man die zweite Ableitung noch einmal ableitet: \[f'''(x) = \frac{\d^3 f}{\d x^3} = \frac{\d}{\d x}(f''(x))\]
+    Und so weiter.
+\end{definition}
+
+\textbf{Bemerkung:} Die zweite Ableitung gibt Auskunft über die Veränderung der Ableitung;
+wenn man z.B.\ die Geschwindigkeit $v(t)$ ableitet, erhält man die Beschleunigung.
+
+\subsection{Ableitungsregeln}\label{subsec:ableitungsregeln}
+
+\begin{definition}{Faktorregel}
+    $(c \cdot f)'(x) = c \cdot f'(x)$
+\end{definition}
+
+\textbf{Beispiel:} $(4x^3)' = 4 \cdot (x^3)' = 4 \cdot 3x^2 = 12x^2$
+
+\begin{definition}{Summenregel}
+    $(f + g)'(x) = f'(x) + g'(x)$
+\end{definition}
+
+\textbf{Beispiel:} $(7x^5 - 3x^3 + 5x^2 - 14x + 6)' = (7x^5)' - (3x^3)' + (5x^2)' - (14x)' + (6)' = 35x^4 - 9x^2 + 10x - 14$
+
+\begin{definition}{Produktregel}
+    $(u \cdot v)'(x) = u'(x) \cdot v(x) + u(x) \cdot v'(x)$
+\end{definition}
+
+\textbf{Beispiel:} $f(x) = (3x^3 + x^2)(4x^2 + 1)$.
+Gesucht ist $f'(x)$.
+
+$u = 3x^3 + x^2$ und $u' = 9x^2 + 2x$\\
+$v = 4x^2 + 1$ und $v' = 8x$
+
+$\Rightarrow f'(x) = u'v + uv' = (9x^2 + 2x) \cdot (4x^2 + 1) + (3x^3 + x^2) \cdot 8x = 36x^4 + 9x^2 + 8x^3 + 2x + 24x^4 + 8x^3 = 60x^4 + 16x^3 + 9x^2 + 2x$
+
+\begin{definition}{Quotientenregel}
+    $\left( \frac{u}{v} \right)'(x) = \frac{u'(x) \cdot v(x) - u(x) \cdot v'(x)}{(v(x))^2}$
+\end{definition}
+
+\begin{definition}{Kettenregel}
+    $(F \circ u)'(x) = F'(u) \cdot u'(x)$ wobei
+    \begin{itemize}
+        \item $F(u)$ die äussere Funktion
+        \item $F'(u)$ die Ableitung der äusseren Funktion nach $u$
+        \item $u(x)$ die innere Funktion
+        \item $u'(x)$ die Ableitung der inneren Funktion nach $x$
+    \end{itemize}
+    sind.
+\end{definition}
+
+\textbf{Beispiel:} $f(x) = (x^3 + 4)^{-2}$
+
+$F(u) = u^{-2}$ und $F'(u) = -2u^{-3}$\\
+$u(x) = (x^3 + 4)$ und $u'(x) = 3x^2$
+
+$\Rightarrow f'(x) = -2u^{-3} \cdot 3x^2 = -2(x^3 + 4)^{-3} \cdot 3x^2$
+
+\subsection{Ableitungen bestimmter Funktionen}\label{subsec:ableitungen-bestimmter-funktionen}
+
+\begin{multicols}{2}
+    \begin{itemize}
+        \item $(\sin (x))' = \cos (x)$
+        \item $(\cos (x))' = -\sin (x)$
+        \item $(e^x)' = e^x$
+        \item $(a^x)' = a^x \cdot \ln (a)$
+        \item $(\ln (x))' = \frac{1}{x}$
+        \item $(\log_a(x))' = \frac{1}{x \cdot \ln (a)}$
+    \end{itemize}
+\end{multicols}
+
+\subsection{Differenzierbarkeit}\label{subsec:differenzierbarkeit}
+
+Es gibt Stellen, an denen nur die Funktion, nicht aber die Ableitung definiert ist.
+Zum Beispiel ist die Betragsfunktion an der Stelle $x = 0$ nicht differenzierbar.
+
+\begin{definition}{Definition}
+    Eine Funktion $f(x)$ ist an der Stelle $x_0$ \emph{differenzierbar}, wenn die linksseitige mit der rechtsseitigen Ableitung übereinstimmt.\\
+    Eine Funktion $f(x)$ heisst \emph{differenzierbar} oder \emph{ableitbar}, wenn die Ableitung an jeder Stelle ihres Definitionsbereichs definiert ist.
+\end{definition}
