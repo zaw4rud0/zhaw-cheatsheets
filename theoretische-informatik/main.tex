@@ -1,0 +1,104 @@
+% Basic settings
+\documentclass[a4paper,7pt,landscape]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[german]{babel}
+
+% Layout settings
+\usepackage[top=1cm, bottom=1.3cm, left=1cm, right=1cm, headsep=4pt]{geometry}
+\usepackage[compact]{titlesec}
+\titlespacing{\section}{0pt}{0pt}{0pt}
+\titlespacing{\subsection}{0pt}{0pt}{0pt}
+\titlespacing{\subsubsection}{0pt}{0pt}{0pt}
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.3em}
+
+% Itemize settings
+\usepackage{enumitem}
+\setlist{topsep=0pt, partopsep=0pt, parsep=0pt, itemsep=2pt, leftmargin=14pt}
+
+% My colors
+\usepackage[dvipsnames]{xcolor}
+\definecolor{babyblue}{HTML}{A1CAF1}
+\definecolor{peach}{HTML}{EFC9AF}
+\definecolor{crayola}{HTML}{FFEE93}
+
+% Custom section formatting
+\newcommand{\sect}[1]{\section*{\colorbox{babyblue}{\makebox[\linewidth][l]{#1}}}}
+\newcommand{\ssect}[1]{\subsection*{\colorbox{peach}{\makebox[\linewidth][l]{#1}}}}
+\newcommand{\sssect}[1]{\subsubsection*{\colorbox{crayola}{\makebox[\linewidth][l]{#1}}}}
+
+% Two columns
+\usepackage{multicol}
+\setlength{\multicolsep}{0pt}
+
+% Package to include images/sketches
+\usepackage{graphicx}
+
+% Mathematical typesetting & symbols
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bigints}
+\usepackage{mathtools}
+\usepackage{wasysym}
+
+% Math helper stuff
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\V}{\mathbb{V}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\true}{\texttt{true}}
+\newcommand{\false}{\texttt{false}}
+\newcommand{\bigO}{\mathcal{O}}
+\newcommand{\comp}{\;\circ\;}
+\newcommand{\diff}[1]{\,\mathrm{d}#1}
+
+% Draw stuff
+\usepackage{tikz-cd}
+\usepackage{paracol}
+
+% Comment packages
+\usepackage{verbatim}
+\usepackage{comment}
+
+% Path to graphics
+\graphicspath{{images/}}
+
+% Header
+\usepackage{fancyhdr}
+\usepackage{adjustbox}
+\usepackage{lipsum}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\lhead{Theoretische Informatik}
+
+\begin{document}
+    \begin{multicols*}{4}
+
+        \input{sections/grundlagen}
+
+        \input{sections/regulaere-ausdruecke}
+
+        \input{sections/endliche-automaten}
+
+        \input{sections/kontextfreie-grammatiken}
+
+        \input{sections/kellerautomaten}
+
+        \input{sections/turingmaschinen}
+
+        \input{sections/berechnungsmodelle}
+
+        \input{sections/entscheidbarkeit}
+
+        \columnbreak
+
+        \input{sections/komplexitaetstheorie}
+    \end{multicols*}
+\end{document}

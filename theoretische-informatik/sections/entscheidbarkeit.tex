@@ -1,0 +1,79 @@
+\sect{Entscheidbarkeit}
+
+\ssect{Entscheidbarkeit}
+
+Eine Sprache $A \subset \Sigma^*$ heisst \textbf{entscheidbar}, wenn eine Turingmaschine $T$ existiert, die das Entscheidungsproblem $(\Sigma, A)$ löst.
+
+\begin{itemize}
+    \item Ist eine Sprache $A \subset \Sigma^*$ entscheidbar, dann gibt es eine Turingmaschine $T$, die sich wie folgt verhält:
+    \begin{itemize}
+        \item Wenn $T$ mit Bandinhalt $x \in A$ startet, dann hält $T$ nach endlich vielen Schritten mit Bandinhalt ``1'' (Ja) an.
+        \item Wenn $T$ mit Bandinhalt $x \in \Sigma^* \backslash A$ startet, dann hält $T$ nach endlich vielen Schritten mit Bandinhalt ``0'' (Nein) an.
+    \end{itemize}
+    \item Insbesondere muss die Turingmaschine $T$ bei jeder Eingabe $x \in \Sigma^*$ nach endlich vielen Schritten halten.
+\end{itemize}
+
+\ssect{Semi-Entscheidbarkeit}
+
+Eine Sprache $A \subset \Sigma^*$ heisst \textbf{semi-entscheidbar}, wenn eine Turingmaschine $T$ existiert, die sich wie folgt verhält:
+\begin{itemize}
+    \item Wenn $T$ mit Bandinhalt $x \in A$ gestartet wird, dann hält $T$ nach endlich vielen Schritten mit Bandinhalt ``1'' (Ja) an.
+    \item Wenn $T$ mit Bandinhalt $x \in \Sigma^* \backslash A$ gestartet wird, dann hält $T$ nie an.
+\end{itemize}
+
+Jede entscheidbare Sprache ist auch semi-entscheidbar.
+
+\textbf{Satz:}
+\begin{itemize}
+    \item Ist $A \subset \Sigma^*$ eine entscheidbare Sprache, dann ist auch $\overline{A}$ entscheidbar.\\
+    \item Sind $A,B$ (semi-) entscheidbare Sprachen, dann sind auch $A \cup B$ und $A \cap B$ (semi-) entscheidbar.
+\end{itemize}
+
+Eine Sprache $A \subset \Sigma^*$ ist genau dann entscheidbar, wenn sowohl $A$ als auch $\overline{A}$ semi-entscheidbar ist.
+
+\ssect{Reduktion}
+
+Wir können jede Instanz des Problems $P_1$ zu einer Instanz des Problems $P_2$ umformulieren.
+Das nennt man eine \textbf{Reduktion} von $P_1$ auf $P_2$.
+
+Eine Sprache $A \subset \Sigma^*$ heisst auf eine Sprache $B \subset \Gamma^*$ \textbf{reduzierbar}, wenn es eine totale, Turing-berechenbare Funktion $F: \Sigma^* \rightarrow \Gamma^*$ gibt, sodass für alle $w \in \Sigma^*$ gilt:\\
+$w \in A \Leftrightarrow F(w) \in B$\\
+Ist die Sprache $A$ auf die Sprache $B$ reduzierbar, dann schreiben wir $A \preceq B$.
+
+\textbf{Satz (Transitivität):} Für beliebige Sprachen $A$, $B$ und $C$ gilt:\\
+$A \preceq B \cap B \preceq C \Rightarrow A \preceq C$
+
+\textbf{Satz:} Für beliebige Sprachen $A \subset \Sigma^*$, $B \subset \Gamma^*$ gilt: Ist $B$ (semi-) entscheidbar und $A \preceq B$, dann ist auch $A$ (semi-) entscheidbar.
+
+\ssect{Halteproblem}
+
+\sssect{Allgemeines Halteproblem $H$}
+\begin{itemize}[label={}]
+    \item \textbf{Gegeben:} Der Code $w \in \{0,1\}^*$ einer Turingmaschine $T_w$ und ein Input $x$.
+    \item \textbf{Gefragt:} Hält die Turingmaschine $T_w$ an, wenn man sie auf $x$ ansetzt?
+\end{itemize}
+
+Das \textbf{allgemeine Halteproblem} ist die Sprache $H \coloneqq \{ w \# x \in \{0,1,\#\}^* \mid T_w$ angesetzt auf $x$ hält$\}$.
+
+Die Funktion des Zeichens \# ist das Trennen des Input-Strings in zwei Inputs.
+
+\sssect{Leeres Halteproblem $H_0$}
+\begin{itemize}[label={}]
+    \item \textbf{Gegeben:} Der Code $w \in \{0,1\}^*$ einer Turingmaschine $T_w$.
+    \item \textbf{Gefragt:} Hält die Turingmaschine $T_w$ an, wenn man sie auf das leere Band ansetzt?
+\end{itemize}
+
+Das \textbf{allgemeine Halteproblem} ist die Sprache $H_0 \coloneqq \{ w \in \{0,1\}^* \mid T_w$ angesetzt auf das leere Band hält$\}$.
+
+\sssect{Spezielles Halteproblem $H_S$}
+\begin{itemize}[label={}]
+    \item \textbf{Gegeben:} Der Code $w \in \{0,1\}^*$ einer Turingmaschine $T_w$.
+    \item \textbf{Gefragt:} Hält die Turingmaschine $T_w$ an, wenn man sie auf ihren eigenen Code $w$ (als Input) ansetzt?
+\end{itemize}
+
+Das \textbf{allgemeine Halteproblem} ist die Sprache $H_S \coloneqq \{ w \in \{0,1\}^* \mid T_w$ angesetzt auf $w$ hält$\}$.
+
+$H$, $H_0$ und $H_S$ sind semi-entscheidbar.
+
+\vspace{-\baselineskip}
+\hrulefill
