@@ -1,0 +1,296 @@
+\section{Zahlentheorie}\label{sec:zahlentheorie}
+
+\begin{definition}{Menge der ganzen Zahlen}
+    Analog zu unserem Vorgehen mit den natürlichen Zahlen wollen wir auch die \emph{ganzen Zahlen} informell einführen.
+    Wir definieren \[\Z \coloneqq \{\dots,-2,-1,0,1,2,\dots\}\]
+\end{definition}
+
+\begin{definition}{Rechenregeln auf $\Z$}
+    Für alle $r,s,z \in \Z$ gelten folgende Gleichungen:
+    \begin{align*}
+        -1 \cdot z &= -z \\
+        -(-z) &= z \\
+        -z + z &= 0 & \text{Inverse Elemente bezüglich} \  +\\
+        0 \cdot z &= 0 & \text{Absorbtion}\\
+        1 \cdot z &= z &\text{Neutrales Element bezüglich} \ \cdot\\
+        0 + z &= z &\text{Neutrales Element bezüglich} \ +\\
+        r(sz) &= (rs)z &\text{Assoziativität von} \ \cdot\\
+        r + (s + z) &= (r + s) + z &\text{Assoziativität von} \ +\\
+        rs &= sr &\text{Kommutativität von} \ \cdot\\
+        r + s &= s + r &\text{Kommutativität von} \ +\\
+        r(s + z) &= rs + rz &\text{Distributivität}\\
+        rx = ry &\Rightarrow x = y \lor r = 0 &\text{Kürzbarkeit}
+    \end{align*}
+\end{definition}
+
+\begin{definition}{Definitionen}
+    Wir definieren die \emph{Substraktion} $-\ : \Z \times \Z \rightarrow \Z$ durch \[x - y \coloneqq x + (-y)\text{,}\]
+    die \emph{Betragsfunktion} $| \cdot | : \Z \rightarrow \N$ durch \[ |z| =
+    \begin{cases}
+        z$ falls $z \in \N \\ -1 \cdot z$ sonst$
+    \end{cases}\]
+    und die Relation $\leq$ durch \[x \leq y \coloneqq \exists n \in \N \left(x + n = y\right)\text{.}\]
+\end{definition}
+
+\subsection{Teilbarkeit und der Euklidische Algorithmus}\label{subsec:teilbarkeit-und-der-euklidische-algorithmus}
+
+\begin{definition}{Definition}
+    Sind $x,y \in \Z$ ganze Zahlen, so sagen wir, dass \emph{x ein Teiler von y} ist, falls es ein $k \in \Z$ gibt mit $xk = y$.
+    Wir schreiben in diesem Fall $x | y$.
+    Es gilt also \[x | y \coloneqq \exists k \in Z \left( y = xk \right)\]
+    Mit $T(y)$ bezeichnen wir die Menge aller natürlichen Zahlen, welche Teiler von $y$ sind, also $T(x) = \{ x \in \N \mid x | y \}$.
+\end{definition}
+
+\textbf{Bemerkung:} Die Teilbarkeitsrelation ist reflexiv und transitiv auf der Menge $\Z$, auf der Menge $\N$ ist die Teilbarkeitsrelation sogar eine Halbordnung.
+
+\begin{definition}{Satz}
+    Sind $n,m \in \N \backslash \{0\}$, dann gibt es eindeutig bestimmte Zahlen $k,r \in \N$, sodass Folgendes gilt:
+    \begin{multicols}{2}
+        \begin{itemize}
+            \item $m = kn + r$
+            \item $r < n$
+        \end{itemize}
+    \end{multicols}
+    Wir sagen in diesem Zusammenhang, dass die Zahl $r$ der Rest von der ganzzahligen Division von $m$ durch $n$ ist.
+\end{definition}
+
+\begin{definition}{KgV und ggT}
+    Seien $n,m \in Z$.
+    Wir definieren das \emph{kleinste gemeinsame Vielfache von $n$ und $m$} als \[kgV(n,m) \coloneqq \min \{ k \in N \mid n|k \land m|k \}.\]
+    Ist $n \neq 0$ oder $m \neq 0$, dann definieren wir den \emph{grössten gemeinsamen Teiler von $n$ und $m$} als \[ggT(n,m) \coloneqq \max \{ k \in \N \mid k|n \land k|m \}.\]
+\end{definition}
+
+\begin{definition}{Satz (Euklidischer Algorithmus)}
+    Für $n,m \in \N$ mit $0 < n < m$ gilt \[ggT(n,m) = ggT(n,m-n) = ggT(m,m-n).\]
+\end{definition}
+
+\begin{mainbox}{Rezept: Euklidischer Algorithmus}
+    \begin{enumerate}
+        \item Grössere durch kleinere Zahl dividieren.
+        \item Divisor durch Rest dividieren.
+        Diesen Schritt so oft wiederholen, bis kein Rest übrig bleibt.
+        \item Ergebnis aufschreiben.
+    \end{enumerate}
+\end{mainbox}
+
+\textbf{Beispiel: $ggT(442, 255)$}
+\vspace{-\topsep}
+\begin{enumerate}
+    \item $442 : 255 = 1$ Rest $187$
+    \item $255 : 187 = 1$ Rest $68 \\
+    187 : 68 = 2$ Rest $51 \\
+    68 : 51 = 1$ Rest $17 \\
+    51 : 17 = 3$ Rest $0$
+    \item $ggT(442, 255) = 17$
+\end{enumerate}
+
+\begin{subbox}{}
+    Zwei ganze Zahlen $x,y$ heissen \emph{teilerfremd}, wenn $ggT(x,y) = 1$ gilt.
+\end{subbox}
+
+\begin{definition}{Lemma von Bézout}
+    Sind $x,y \in \Z$ mit $x,y \neq 0$, dann gibt es ganze Zahlen $a,b$, sodass \[ggT(x,y) = ax + by\] gilt.
+    Die Zahlen $a$ und $b$ werden \emph{Bézout-Koeffizienten} genannt.
+\end{definition}
+
+\textbf{Beispiel:} Berechnen Sie $ggT(135, 480)$ und gleichzeitig die $x,y$ mit $ggT(135, 480) = 135x + 480y$.
+Wir wenden den sogenannten \emph{erweiterten Euklidischen Algorithmus} an:
+\begin{alignat*}{2}
+    480 &= 3 \cdot 135 + 75 \quad \quad &&\Leftrightarrow 75 = 480 - 3 \cdot 135 \\
+    135 &= 1 \cdot 75 + 60 &&\Leftrightarrow 60 = 135 - 1 \cdot 75 = 135 - (480 - 3 \cdot 135) = -480 + 4 \cdot 135 \\
+    75 &= 1 \cdot 60 + 15 &&\Leftrightarrow 15 = 75 - 1 \cdot 60 = 480 - 3 \cdot 135 - (-480 + 4 \cdot 135) = 2 \cdot 480 - 7 \cdot 135 \\
+    60 &= 4 \cdot 15 + 0
+\end{alignat*}
+Wir erhalten also $ggT(480, 135) = 15 = -7 \cdot 135 + 2 \cdot 480$, also $x = -7$ und $y = 2$.
+
+\subsection{Primzahlen}\label{subsec:primzahlen}
+
+\begin{definition}{Definition}
+    Eine natürliche Zahl $p$ ist eine \emph{Primzahl}, wenn $|T(p)| = 2$ gilt.
+    Die Menge der Primzahlen bezeichnen wir mit $\P$.
+\end{definition}
+
+\textbf{Bemerkung:} Ist $p$ eine Primzahl, dann gilt $T(p) = \{ 1,p \}$.
+
+\begin{definition}{Lemma von Euklid}
+    Für $p \in \N$ mit $p \neq 1$ gilt: \[\forall n,m \in \N \left( p|nm \Rightarrow p|n \lor p|m \right) \Leftrightarrow p \in \P.\]
+    Mit anderen Worten: Primzahlen haben die Eigenschaft, dass sie mit jedem Produkt auch mindestens einen der Faktoren teilen.
+    Umgekehrt ist auch jede von 1 verschiedene natürliche Zahl mit dieser Eigenschaft eine Primzahl.
+\end{definition}
+
+\begin{definition}{}
+    Jede ganze Zahl $z$ mit $z \notin \{ -1,1 \}$ besitzt einen Primfaktor (einen Teiler, der eine Primzahl ist).
+    Formal können wir dies als \[\forall z \in \Z \left( z \notin \{-1,1 \} \Rightarrow T(z) \cap \P \neq 0 \right)\] ausdrücken.
+\end{definition}
+
+\begin{definition}{Theorem}
+    Jede natürliche Zahl grösser als 1 ist das Produkt von endlich vielen Primzahlen.
+\end{definition}
+
+\begin{definition}{Primfaktorzerlegung}
+    Es sei $p_i$ jeweils die $i$-te Primzahl.
+    Für jede natürliche Zahl $n > 1$ gibt es eine eindeutig bestimmte, endliche Folge $a_1,\cdots,a_k$ von natürlichen Zahlen mit $a_k \neq 0$, sodass \[n = \prod_{i=1}^k p_i^{a_i}\] gilt.
+\end{definition}
+
+\subsection{Modulare Arithmetik}\label{subsec:modulare-arithmetik}
+
+In der modularen Arithmetik geht es darum mit Restklassen zu rechnen.
+Die Grundlage der modularen Arithmetik ist die ``kongruent modulo''-Relation.
+
+\begin{definition}{Definition}
+    Es sei $n \in \N$ beliebig.
+    Wir definieren eine Relation $\equiv_n$ auf $\Z$ wie folgt: \[r \equiv_n s \coloneqq n|(r-s).\]
+    Gilt für $r,s \in \Z$ die Relation $r \equiv_n s$, dann sagen wir, dass $r$ gleich $s$ modulo $n$ ist und wir schreiben \emph{r = s mod n}.
+\end{definition}
+
+\textbf{Bemerkung:} Die Relation $\equiv_n$ ist für jede natürliche Zahl $n$ eine Äquivalenzrelation auf $\Z$.
+
+\textbf{Bemerkung:} Es sei $n \in \N$ beliebig.
+Für je zwei ganze Zahlen $x$ und $y$ gilt $x \equiv_n y$ genau dann, wenn $x$ und $y$ denselben Rest bei Division durch $n$ haben.
+
+\textbf{Folgerung:} Es sei $n \in \N$ beliebig.
+Jede ganze Zahl $z$ steht mit genau einer natürlichen Zahl aus $\{0,\cdots,n-1\}$ in der Relation $\equiv_n$.
+
+\begin{definition}{Definition}
+    Es sei $n \in \N$ beliebig.
+    Für jede ganze Zahl $z$ bezeichnen wir mit \[[z]_n \coloneqq \{ x \in \Z \mid x \equiv_n z \}\] die Äquivalenzklasse von $z$ bezüglich der Relation $\equiv_n$ und nennen diese auch die \emph{Restklassen} von $z$.
+    Abkürzend bezeichnen wir $[z]_n$ auch mit $\overline{k}$, wenn $k \in \{ 0, \cdots, n-1\}$ und $z \equiv_n k$ gilt.
+\end{definition}
+
+\textbf{Folgerung:} Es sei $n \in \N$ beliebig.
+Es gilt \[[z]_n = \{ z + yn \mid y \in \Z \} = \{\cdots, z-3n, z-2n, z-n,z,z+n, z+2n, z+3n, \cdots \}.\] Damit wir mit Restklassen sinnvoll rechnen können, müssen wir uns davon überzeugen, dass die Rechenoperationen unabhängig von der Wahl von Repräsentanten sind.
+
+\textbf{Bemerkung:} Es sei $n \in \N$ beliebig.
+Für ganze Zahlen $x, x'$ und $y, y'$ gelten:
+\vspace{-\topsep}
+\begin{itemize}
+    \item $[x] = [x'] \land [y] = [y'] \Rightarrow [x + y] = [x' + y']$
+    \item $[x] = [x'] \land [y] = [y'] \Rightarrow [xy] = [x'y']$
+\end{itemize}
+
+\begin{definition}{Definition}
+    Es sei $n \in \N$ beliebig.
+    Die Menge aller Restklassen von $\Z$ modulo $n$ bezeichnen wir mit \[\Z/n = \{ [z]_n \mid z \in \Z \} = \{ \overline{k} \mid 0 \leq k < n - 1 \land z \equiv_n k \} = \{\overline{0}, \overline{1}, \overline{2}, \cdots, \overline{n-1} \}.\]
+    Wir definieren zwei Verknüpfungen $\cdot : (\Z/n)^2 \rightarrow \Z/n$ und $+ : (\Z/n)^2 \rightarrow \Z/n$ durch die Zuordnungen \[[x]_n + [y]_n \coloneqq [x + y]_n\] und \[[x]_n \cdot [y]_n \coloneqq [xy]_n.\]
+\end{definition}
+
+% TODO: Bemerkungen
+
+\subsubsection{Chinesischer Restsatz}
+
+\begin{definition}{Chinesischer Restsatz}
+    Es seien $n_1,\dots,n_k \in \N_{>1}$ paarweise teilerfremd und weiter $y_1,\dots,y_k \in \Z$ beliebig.
+    Es gibt genau eine natürliche Zahl $x < \prod_{i=1}^k n_i$ so, dass die Lösungsmenge des Systems
+    \begin{align*}
+        &x \equiv_{n_1} y_1 \\
+        &x \equiv_{n_2} y_2 \\
+        &\vdots \\
+        &x \equiv_{n_k} y_k
+    \end{align*}
+    der Menge $[x]_{\prod_{i=1}^k} n_i$ entspricht.
+\end{definition}
+
+\textbf{Bemerkung:} Aus dem chinesischen Restsatz folgt, dass wir, um ein System simultaner Kongruenzen zu lösen, bloss eine Lösung davon kennen müssen.
+Durch sukzessive Substitution genügt es also jeweils eine Lösung von einem System mit zwei Gleichungen zu finden, um beliebige Systeme lösen zu können.
+
+\begin{subbox}{Algorithmus}
+    Wir wollen ein System simultaner Kongruenzen mit zwei Gleichungen lösen, etwa
+    \begin{align*}
+        &x \equiv_{n_1} y_1 \\
+        &x \equiv_{n_2} y_2
+    \end{align*}
+    mit $n_1$ und $n_2$ teilerfremd.
+    Wir gehen schrittweise wie folgt vor:
+    \begin{enumerate}
+        \item Durch sukzessives Teilen mit Rest erhalten wir ganze Zahlen $a,b$ mit $an_1 + bn_2 = 1$.
+        \item Wir setzen $x \coloneqq y_1 bn_2 + y_2 an_1$.
+    \end{enumerate}
+\end{subbox}
+
+\begin{definition}{Lemma}
+    Ist $a \in \Z/n$ mit $n > 0$ invertierbar, dann ist die Funktion
+    \begin{align*}
+        &f : \Z/p \rightarrow \Z/p \\
+        &f(x) = \overline{a} \cdot x
+    \end{align*}
+    surjektiv.
+\end{definition}
+
+\begin{definition}{Kleiner fermatscher Satz}
+    Ist $p \in \P$ und $a$ kein Vielfaches von $p$, dann gilt \[a^{p-1} \equiv_p 1.\]
+\end{definition}
+
+\textbf{Beispiel (Chinesischer Restsatz):}
+\begin{align*}
+    x &\equiv_{73} 5 \\
+    x &\equiv_{3} 1 \\
+    x &\equiv_{11} 6
+\end{align*}
+
+Wir setzen $n_1 = 73$, $n_2 = 3$ und $n_3 = 11$, und rechnen das Produkt davon aus: $n = n_1 \cdot n_2 \cdot n_3 = 2409$.
+
+Anschliessend rechnen wir $N_1 = n_2 \cdot n_3 = 33$, $N_2 = n_1 \cdot n_3 = 803$ und $N_3 = n_1 \cdot n_2 = 219$ aus.
+\begin{align*}
+[33]
+    _{73}^{-1} &\stackrel{*}{=} [31]_{73} \\
+    [803]_3^{-1} &= [2]_3^{-1} = [2]_3 \quad \longrightarrow \quad [2]_3 \cdot [2]_3 = [4]_3 = [1]_3 \\
+    [219]_{11}^{-1} &= [10]_{11}^{-1} = [10]_{11} \quad \longrightarrow \quad [10]_{11} \cdot [10]_{11} = [100]_{11} = [1]_{11}
+\end{align*}
+Wir haben also \[x = 5 \cdot 33 \cdot 31 + 1 \cdot 803 \cdot 2 + 6 \cdot 219 \cdot 10 = 19861\] und damit \[[19861]_{2409} = [589]_{2409}.\]
+
+Die gesamte Lösungsmenge lautet $\{ 589 + k \cdot 2409 : k \in \Z \}.$
+
+\begin{alignat*}{2}
+    \text{(*)}\quad &73 = 2 \cdot 33 + 7 \quad \quad &&\Rightarrow 7 = 73 - 2 \cdot 33 \\
+    &33 = 4 \cdot 7 + 5 &&\Rightarrow 5 = 33 - 4 \cdot 7 = 33 - 4 \cdot (73 - 2 \cdot 33) = 9 \cdot 33 - 4 \cdot 73 \\
+    &7 = 1 \cdot 5 + 2 &&\Rightarrow 2 = 7 - 5 = 73 - 2 \cdot 33 - (9 \cdot 33 - 4 \cdot 73) = 5 \cdot 73 - 11 \cdot 33 \\
+    &5 = 2 \cdot 2 + 1 &&\Rightarrow 1 = 5 - 2 \cdot 2 = 9 \cdot 33 - 4 \cdot 73 - 2 \cdot (5 \cdot 73 - 11 \cdot 33) = 31 \cdot 33 - 14 \cdot 73
+\end{alignat*}
+
+\textbf{Beispiel (Multiplikative Inverse):} Welche Elemente von $\Z/12$ besitzen multiplikative Inverse?
+\begin{align*}
+    ggT(12,1) = 1 &\Rightarrow [1]_{12}^{-1} = [1]_{12} \\
+    ggT(12,5) = 1 &\Rightarrow [5]_{12}^{-1} = [5]_{12} \\
+    ggT(12,7) = 1 &\Rightarrow [7]_{12}^{-1} = [7]_{12} \\
+    ggT(12,11) = 1 &\Rightarrow [11]_{12}^{-1} = [11]_{12}
+\end{align*}
+
+\textbf{Beispiel (Verknüpfungstabelle):} Skizzieren Sie die Verknüpfungstabelle von $\Z/4$ und markieren Sie die Elemente, die kein multiplikatives Inverses besitzen.
+
+\begin{center}
+    \begin{tabular}{c|cccc}
+        $\cdot$ & $0$ & $1$ & $2$ & $3$ \\
+        \hline
+        0       & 0   & 0   & 0   & 0   \\
+        1       & 0   & 1   & 2   & 3   \\
+        2       & 0   & 2   & 0   & 2   \\
+        3       & 0   & 3   & 2   & 1
+    \end{tabular}
+\end{center}
+
+\textbf{Beispiel (Multiplikatives Inverse):} Bestimmen Sie das multiplikative Inverse von $\overline{6111}$ in $\Z/6211$.
+
+Wir wenden den erweiterten euklidischen Algorithmus an:
+\begin{alignat*}{2}
+    &6211 = 1 \cdot 6111 + 100 \quad \quad &&\Leftrightarrow 100 = 6211 - 6111 \\
+    &6111 = 61 \cdot 100 + 11 &&\Leftrightarrow 11 = 6111 - 61 \cdot 100 = 6111 - 61 \cdot (6211 - 6111) = 62 \cdot 6111 - 61 \cdot 6211 \\
+    &100 = 9 \cdot 11 + 1 &&\Leftrightarrow 1 = 100 - 9 \cdot 11 = 6211 - 6111 - 9 \cdot (62 \cdot 6111 - 61 \cdot 6211) = 550 \cdot 6211 - 559 \cdot 6111
+\end{alignat*}
+
+Damit haben wir: \[[6111]_{6211}^{-1} = [-559]_{6211} = [5652]_{6211}\]
+
+\textbf{Beispiel (Chinesischer Restsatz):}
+\begin{align*}
+    x &\equiv_{7} 5 \\
+    x &\equiv_{3} 2 \\
+    x &\equiv_{8} 1
+\end{align*}
+Zuerst überprüfen wir, dass alle Moduli teilerfremd sind (Voraussetzung für den chinesischen Restsatz): \[ggT(3,7) = ggT(3,8) = ggT(7,8) = 1\]
+Dann berechnen wir: $n = 3 \cdot 7 \cdot 8 = 168$ und $N_1 = n_2 \cdot n_3 = 7 \cdot 8 = 56$, $N_2 = n_1 \cdot n_3 = 3 \cdot 8 = 24$, $N_3 = n_1 \cdot n_2 = 3 \cdot 7 = 21$
+\begin{align*}
+    &[N_1]_{n_1}^{-1} = [56]_3^{-1} = [2]_3^{-1} = [2]_3 \\
+    &[N_2]_{n_2}^{-1} = [24]_7^{-1} = [3]_7^{-1} = [5]_7 \\
+    &[N_3]_{n_3}^{-1} = [21]_8^{-1} = [5]_8^{-1} = [5]_8
+\end{align*}
+Damit ist \[x = 2 \cdot 56 \cdot 2 + 5 \cdot 24 \cdot 5 + 1 \cdot 21 \cdot 5 = 929\] und wir schliessen ab mit \[[929]_{168} = [89]_{168}.\]
+Die Lösungsmenge lautet: $\{89 + k \cdot 168 : k \in \Z\}$

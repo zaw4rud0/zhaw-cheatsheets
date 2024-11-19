@@ -1,0 +1,227 @@
+\section{Syntax und Semantik der Aussagenlogik}\label{sec:syntax-und-semantik-der-aussagenlogik}
+
+\subsection{Syntax der Aussagenlogik}\label{subsec:syntax-der-aussagenlogik}
+
+\begin{definition}{}
+    Das \emph{Alphabet des Aussagenlogik} besteht aus:
+    \vspace{-\topsep}
+    \begin{itemize}
+        \setlength{\itemsep}{0pt}
+        \setlength{\parskip}{0pt}
+        \setlength{\parsep}{0pt}
+        \begin{multicols}{2}
+            \item Konstanten $\top$ und $\bot$.
+            \item Variablen $p,q,r,s,\dots,p_0,p_1,p_2,\dots$
+            \item Klammern (,)
+            \item Junktoren $\neg, \land, \lor, \rightarrow$
+        \end{multicols}
+    \end{itemize}
+    \vspace{-\topsep}
+    Die Menge der Variablen bezeichnen wir mit $\V$.
+\end{definition}
+
+\begin{definition}{}
+    Jede Variable und jede Konstante ist eine \emph{atomare Formel}.
+    Wir bezeichnen die Menge aller atomaren Formeln mit $\mathbb{A} \coloneqq \{\bot, \top, p,q,r,s,\dots,p_0,p_1,p_2,\dots\}$.
+    Die \emph{Formeln} der Aussagenlogik sind dann wie folgt:
+    \begin{itemize}
+        \item Alle atomaren Formeln sind Formeln.
+        \item Sind $P$ und $Q$ schon Formeln, dann auch: $(P \land Q), (P \lor Q), (P \rightarrow Q)$ und $\neg P$.
+    \end{itemize}
+    Wir schreiben $\mathbb{F}$ für die Menge aller aussagenlogischen Formeln.
+\end{definition}
+
+\subsection{Semantik der Aussagenlogik}\label{subsec:semantik-der-aussagenlogik}
+
+\begin{definition}{}
+    Eine \emph{Belegung} ist eine Zuordnung von Variablen zu Wahrheitswerten, d.h.\ eine Funktion $B : \V \rightarrow \{\true, \false\}$.
+    Es sei eine Belegung $B$ gegeben.
+    Die Funktion $\widehat{B}$ ist die Funktion, die jeder aussagenlogischen Formel ihren Wahrheitswert bezüglich der Belegung $B$ zuordnet, d.h.\ die Funktion $\widehat{B}: \F \rightarrow \{\false, \true\}$ ist gegeben durch:
+    \begin{itemize}
+        \item $\widehat{B}(\perp) = \false$ und $\widehat{B}(\top) = \true$
+
+        \item Für beliebige Variablen $v$ gilt $\widehat{B}(v) = B(v)$
+
+        \item Für beliebige Formeln $F$ und $G$ gilt
+        $$\widehat{B}(F \land G) = \begin{cases}
+                                       \true$ falls $\widehat{B}(F) = \true$ und $\widehat{B}(G) = \true \\ \false$ sonst. $
+        \end{cases}$$
+
+        \item Für beliebige Formeln $F$ und $G$ gilt
+        $$\widehat{B}(F \lor G) = \begin{cases}
+                                      \true$ falls $\widehat{B}(F) = \true$ oder $\widehat{B}(G) = \true \\ \false$ sonst. $
+        \end{cases}$$
+
+        \item Für beliebige Formeln $F$ gilt
+        $$\widehat{B}(\neg F) = \begin{cases}
+                                    \true$ falls $\widehat{B}(F) = \false \\ \false$ sonst. $
+        \end{cases}$$
+
+        \item Für beliebige Formeln $F$ und $G$ gilt $\widehat{B}(F \rightarrow G) = \widehat{B}(\neg F \lor G)$.
+    \end{itemize}
+\end{definition}
+
+Die Junktoren können wir auch als boolesche Funktionen anschauen:
+\begin{align*}
+    \texttt{or} (x,y) &= \begin{cases}
+                             \true$ falls $x = \true$ oder $y = \true \\ \false$ sonst. $
+    \end{cases}\\
+    \texttt{and} (x,y) &= \begin{cases}
+                              \true$ falls $x = \true$ und $y = \true \\ \false$ sonst. $
+    \end{cases}\\
+    \texttt{not} (x) &= \begin{cases}
+                            \true$ falls $x = \false \\ \false$ sonst. $
+    \end{cases}
+\end{align*}
+
+\vspace{-\topsep}
+
+Dadurch können wir die obige Definition kürzer und knapper formulieren:
+\begin{multicols}{3}
+    \begin{itemize}
+        \item $\widehat{B}(F \land G) = \texttt{and}(\widehat{B}(F), \widehat{B}(G))$
+        \item $\widehat{B}(F \lor G) = \texttt{or}(\widehat{B}(F), \widehat{B}(G))$
+        \item $\widehat{B}(\neg F) = \texttt{not}(\widehat{B}(F))$
+    \end{itemize}
+\end{multicols}
+
+\begin{definition}{Wahrheitstabellen}
+    In einer \emph{Wahrheitstabelle einer Formel $F$} entspricht jede Spalte einer Teilformel von $F$ und jede Zeile einer Belegung der in $F$ vorkommenden Variablen.
+    Es gelten folgende Bedingungen:
+    \begin{itemize}
+        \item In der Spalte einer Formel steht in jeder der folgenden Zeilen der Wahrheitswert dieser Formel unter der Zeile entsprechenden Belegung.
+        \item Steht in einer Spalte eine Formel, dann kommen alle echten Teilformeln dieser Formeln in Spalten weiter links vor.
+        \item Der letzte Eintrag der ersten Zeile ist die Formel $F$.
+    \end{itemize}
+\end{definition}
+
+\textbf{Bemerkung:} Für eine bessere Übersicht werden in Wahrheitstabellen anstelle der Wahrheitswerte $\true$ und $\false$ oft 1 und 0 verwendet.
+
+\begin{multicols}{4}
+    \centering
+    \begin{tabular}{|c|c||c|}
+        \hline
+        $F$ & $G$ & $F \land G$ \\
+        \hline
+        0   & 0   & 0           \\
+        0   & 1   & 0           \\
+        1   & 0   & 0           \\
+        1   & 1   & 1           \\
+        \hline
+    \end{tabular}
+    \centering
+    \begin{tabular}{|c|c||c|}
+        \hline
+        $F$ & $G$ & $F \lor G$ \\
+        \hline
+        0   & 0   & 0          \\
+        0   & 1   & 1          \\
+        1   & 0   & 1          \\
+        1   & 1   & 1          \\
+        \hline
+    \end{tabular}
+    \centering
+    \begin{tabular}{|c|c||c|}
+        \hline
+        $F$ & $G$ & $F \rightarrow G$ \\
+        \hline
+        0   & 0   & 1                 \\
+        0   & 1   & 1                 \\
+        1   & 0   & 0                 \\
+        1   & 1   & 1                 \\
+        \hline
+    \end{tabular}
+    \centering
+    \begin{tabular}{|c||c|}
+        \hline
+        $F$ & $\neg F$ \\
+        \hline
+        0   & 1        \\
+        1   & 0        \\
+        \hline
+    \end{tabular}
+\end{multicols}
+
+\vspace{-\topsep}
+
+\begin{definition}{Semantische Eigenschaften}
+    Eine aussagenlogische Formel $A$ heisst
+    \begin{itemize}
+        \item \emph{Gültig} oder \emph{wahr} unter einer Belegung $B$, falls $\widehat{B}(A) = \true$.
+        \item \emph{Allgemeingültig}, wenn sie unter jeder Belegung gültig ist (Tautologie).
+        \item \emph{Widerlegbar}, wenn es mindestens eine Belegung gibt, unter der $A$ nicht gültig ist.
+        \item \emph{Erfüllbar}, wenn es mindestens eine Belegung gibt, unter der $A$ gültig ist.
+        \item \emph{Unerfüllbar}, wenn $A$ nicht erfüllbar ist.
+    \end{itemize}
+\end{definition}
+
+Die obigen Begriffe können auch anhand von Wahrheitstabellen verstanden werden.
+Eine aussagenlogische Formel $A$ ist
+\vspace{-\topsep}
+\begin{itemize}
+    \item Allgemeingültig, wenn in der Wahrheitstabelle von $A$ in der letzten Spalte all Einträge $\true$ sind.
+    \item Erfüllbar, wenn in der Wahrheitstabelle von $A$ in der letzten Spalte mindestens einer der Einträge $\true$ ist.
+    \item Unerfüllbar, wenn in der Wahrheitstabelle von $A$ in der letzten Spalte alle Einträge $\false$ sind.
+    \item Widerlegbar, wenn in einer Wahrheitstabelle von $A$ in der letzten Spalte mindestens einer der Einträge $\false$ ist.
+\end{itemize}
+
+\begin{definition}{}
+    Es seien $F$ und $G$ beliebige aussagenlogische Formeln.
+    Wir sagen
+    \begin{itemize}
+        \item \emph{F ist eine Konsequenz von G}, falls $F$ unter jeder Belegung $\true$ ist unter der $G$ $\true$ ist.
+        \item $F$ und $G$ sind \emph{logisch äquivalent}, wenn $G$ und $F$ unter jeder Belegung denselben Wahrheitswert annehmen.
+    \end{itemize}
+    Sind $F$ und $G$ äquivalente Formeln, dann schreiben wir $F \equiv G$.
+\end{definition}
+
+\begin{definition}{}
+    Eine aussagenlogische Formel ist:
+    \begin{itemize}
+        \item In \emph{Negationsnormalform} (NNF), wenn alle Negationen in Literalen vorkommen und wenn keine Implikationen ($\rightarrow$) vorkommen.
+        \item In \emph{disjunktiver Normalform} (DNF), wenn sie mit Literalen $L_{i,j}$ von der Form ist: \[(L_{1,1} \land L_{1,2} \land \dots) \lor (L_{2,1} \land L_{2,2} \land ...) \lor (L_{3,1} \land L_{3,2} \land ...)\dots\]
+        \item In \emph{konjunktiver Normalform} (KNF), wenn sie mit Literalen $L_{i,j}$ von der Form ist: \[(L_{1,1} \lor L_{1,2} \lor \dots) \land (L_{2,1} \lor L_{2,2} \lor ...) \land (L_{3,1} \lor L_{3,2} \lor ...)\dots\]
+    \end{itemize}
+\end{definition}
+
+\textbf{Beispiel:} Es sei die Formel $F = p \rightarrow (q \rightarrow \neg q).$
+\begin{enumerate}
+    \item Ist die Formel erfüllbar? \\
+    Ja, es gibt mind.\ eine Belegung, unter der die Formel gültig ist, nämlich wenn p oder q falsch ist.
+    \item Ist die Formel allgemeingültig? \\
+    Nein, die Formel ist nicht gültig, wenn sowohl p als auch q wahr sind.
+    \item Bringen Sie die Formel $F$ in $KNF$.
+    \begin{align*}
+        p \rightarrow (q \rightarrow \neg q) &\equiv \neg p \lor (q \rightarrow \neg q) \\
+        &\equiv \neg p \lor (\neg q \lor \neg q) \\
+        &\equiv \neg p \lor \neg q
+    \end{align*}
+\end{enumerate}
+
+\textbf{Beispiele ($KNF$ \& $DNF$):}
+\begin{itemize}
+    \item $p$ ist in $KNF$ und $DNF$.
+    \item $(p \land (\neg q \land p_1)) \equiv p \land \neg q \land p_1 \equiv (p \land \neg q \neg p_1)$ ist in $KNF$ und $DNF$.
+    \item $p \lor (q \rightarrow p) \equiv p \lor (\neg q \lor p)$ ist nicht in $KNF$ und nicht in $DNF$.
+    \item $p \lor (\neg p \land (p \lor q))$ ist weder $KNF$ noch in $DNF$.
+    \item $(p \lor q) \land (p \lor (p \lor p))$ ist in $KNF$, aber nicht in $DNF$.
+\end{itemize}
+
+\textbf{Beispiele ($KNF$ \& $DNF$):} Bringen Sie die folgenden Formeln in $DNF$ und $KNF$.
+\begin{multicols}{2}
+    \begin{align*}
+        p \rightarrow (q \lor (p_1 \land p_2)) &\equiv \neg p \lor \underbrace{(q \lor (p_1 \land p_2))}_{DNF} \\
+        &\equiv \neg p \lor ((q \lor p_1) \land (q \lor p_2)) \\
+        &\equiv \underbrace{(\neg p \lor q \lor p_1) \land (\neg p \lor q \lor p_2)}_{KNF}
+    \end{align*}
+    \begin{align*}
+        p \rightarrow (q \rightarrow p_1) &\equiv \neg p \lor (q \rightarrow p_1) \\
+        &\equiv \underbrace{\neg p \lor \neg q \lor p_1}_{KNF \ \text{und} \ DNF}
+    \end{align*}
+    \begin{align*}
+        (p \rightarrow q) \rightarrow p_1 &\equiv \neg (p \rightarrow q) \lor p_1 \\
+        &\equiv \neg (\neg p \lor q) \lor p_1 \\
+        &\equiv \underbrace{(p \land \neg q) \lor p_1}_{DNF} \\
+        &\equiv \underbrace{(p \lor p_1) \land (\neg q \lor p_1)}_{KNF}
+    \end{align*}
+\end{multicols}

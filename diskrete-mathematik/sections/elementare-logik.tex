@@ -1,0 +1,180 @@
+\section{Elementare Logik}\label{sec:elementare-logik}
+
+\subsection{Aussagen, Prädikate und Quantoren}\label{subsec:aussagen-pradikate-und-quantoren}
+
+\begin{definition}{Prädikate}
+    Eine Variable $x$, der einen Platzhalter darstellt, nennen wir eine \emph{freie Variable}.
+    Ein Ausdruck, in dem $n$ viele Variablen frei vorkommen, nennen wir ein \emph{$n$-stelliges Prädikat}.
+\end{definition}
+
+\textbf{Beispiel:} $A(x,y,z) \coloneqq x + y < z$ ist ein dreistelliges Prädikat mit den freien Variablen $x$, $y$ und $z$.
+
+\begin{definition}{Junktoren}
+    Es seien $A$ und $B$ beliebige Prädikate.
+    Es gilt:
+    \begin{itemize}
+        \item $\neg A$ ist wahr, wenn $A$ falsch ist.
+        \item $A \land B$ ist wahr, wenn $A$ und $B$ wahr sind.
+        \item $A \lor B$ ist wahr, wenn $A$ oder $B$ wahr ist (oder beides wahr sind).
+        \item $A \Rightarrow B$ ($A$ impliziert $B$) ist wahr, wenn $\neg A \lor B$ wahr ist.
+        \item $A \Leftrightarrow B$ ($A$ äquivalent $B$) ist wahr, wenn $A \Rightarrow B$ und $B \Rightarrow A$ wahr sind.
+    \end{itemize}
+    Die Zeichen $\neg$, $\Rightarrow$, $\land$ und $\lor$ nennen wir \emph{Junktoren}.
+\end{definition}
+
+\begin{definition}{Umformungsregeln}
+    Seien $A$, $B$ und $C$ beliebige Aussagen.
+    Es gelten folgende Äquivalenzen:
+    \begin{itemize}
+        \setlength{\itemsep}{0pt}
+        \setlength{\parskip}{0pt}
+        \setlength{\parsep}{0pt}
+        \item Regel der doppelten Negation: \[\neg\neg A \Leftrightarrow A\]
+        \item Kommutativität:
+        \vspace{-\topsep}
+        \begin{align*}
+            &A \land B \Leftrightarrow B \land A\\
+            &A \lor B \Leftrightarrow B \lor A
+        \end{align*}
+        \item Assoziativität:
+        \vspace{-\topsep}
+        \begin{align*}
+            &(A \land B) \land C \Leftrightarrow A \land (B \land C)\\
+            &(A \lor B) \lor C \Leftrightarrow A \lor (B \lor C)
+        \end{align*}
+        \item Distributivität:
+        \vspace{-\topsep}
+        \begin{align*}
+            &A \land (B \lor C) \Leftrightarrow (A \land B) \lor (A \land C)\\
+            &A \lor (B \land C) \Leftrightarrow (A \lor B) \land (A \lor C)
+        \end{align*}
+        \item Regel von De Morgan:
+        \vspace{-\topsep}
+        \begin{align*}
+            &\neg (A \land B) \Leftrightarrow \neg A \lor \neg B\\
+            &\neg (A \lor B) \Leftrightarrow \neg A \land \neg B
+        \end{align*}
+    \end{itemize}
+\end{definition}
+
+\begin{definition}{Quantoren}
+    \emph{Quantoren} sind Symbole, anhand derer wir aus Prädikaten neue Prädikate gewinnen können.
+    Es sei $M$ eine Menge.
+    Folgendes gilt:
+    \begin{itemize}
+        \item $\forall x A(x)$ trifft genau dann zu, wenn $A$ auf jedes mathematische Objekt zutrifft.
+        \item $\forall x \in M A(x)$ trifft genau dann zu, wenn $A$ auf jedes Element aus $M$ zutrifft.
+        \item $\exists x A(x)$ trifft genau dann zu, wenn es mindestens ein mathematisches Objekt gibt, auf welches $A$ zutrifft.
+        \item $\exists x \in M A(x)$ trifft genau dann zu, wenn es mindestens ein Element aus $M$ gibt, auf welches $A$ zutrifft.
+    \end{itemize}
+    Die Symbole $\forall$ und $\exists$ heissen \emph{Allquantor} und \emph{Existenzquantor}.
+\end{definition}
+
+Prädikate von der Form $\forall x \forall y A(x,y)$ und $\exists x \exists y A(x,y)$ kürzen wir mit $\forall x,y A(x,y)$ und $\exists x,y A(x,y)$ ab.
+
+\textbf{Beispiele:}
+\vspace{-\topsep}
+\begin{itemize}
+    \item $\exists x (E(x)) \Leftrightarrow$ ``Es gibt eine natürliche Zahl mit Eigenschaft $E$.''
+    \item $\forall x (E(x)) \Leftrightarrow$ ``Alle natürlichen Zahlen haben Eigenschaft $E$.''
+    \item $\exists x (E(x)) \land \forall x,y (E(x) \land E(y) \Rightarrow x = y) \Leftrightarrow$ ``Genau eine natürliche Zahl hat Eigenschaft $E$.''
+    \item $\exists x,y,z (E(x) \land E(y) \land E(z) \land x \neq y \land x \neq z \land y \neq z) \Leftrightarrow$ ``Mindestens drei nat.\ Zahlen haben Eigenschaft $E$.''
+    \item $\neg (\exists x,y,z (E(x) \land E(y) \land E(z) \land x \neq y \land x \neq z \land y \neq z)) \Leftrightarrow$ ``Höchstens zwei nat.\ Zahlen haben Eigenschaft $E$.''
+\end{itemize}
+
+\begin{definition}{}
+    Sei $A(x)$ ein Prädikat und $K$ eine Menge.
+    Dann gelten folgende Regeln:
+    \begin{itemize}
+        \item Vertauschungsregel für unbeschränkte Quantoren: \[\forall x A(x) \Leftrightarrow \neg \exists x \neg A(x)\]
+        \item Vertauschungsregel für beschränkte Quantoren: \[\forall x \in K A(x) \Leftrightarrow \neg \exists x \in K \neg A(x)\]
+        \item Beschränkter und unbeschränkter Allquantor: \[\forall x \in K A(x) \Leftrightarrow \forall x (x \in K \Rightarrow A(x))\]
+        \item Beschränkter und unbeschränkter Existenzquantor: \[\exists x \in K A(x) \Leftrightarrow \exists x (x \in K \land A(x))\]
+    \end{itemize}
+\end{definition}
+
+\textbf{Beispiel:} Es sei \texttt{E}($n$) irgendeine Eigenschaft, die auf $\N$ zutreffen kann oder nicht.
+Es sei das Prädikat $div(x,y) \coloneqq x$ ist ein Teiler von $y$.
+Formalisieren Sie folgende Aussagen:
+\begin{enumerate}
+    \item Jede natürliche Zahl besitzt (mindestens) einen Teiler, der nicht die Eigenschaft \texttt{E} hat. \\ $\Rightarrow \forall n \exists m (div(m,n) \land \neg E(m))$
+    \item Alle Vielfache von einer natürlichen Zahl mit der Eigenschaft \texttt{E} haben selbst diese Eigenschaft \texttt{E}. \\ $\Rightarrow \forall m (E(n) \land div(n,m) \rightarrow E(m))$
+\end{enumerate}
+
+\textbf{Beispiel:} Es seien die Prädikate
+\begin{align*}
+    E(n) &\coloneqq n \ \text{hat die nicht näher spezifizierte Eigenschaft E} \\
+    mul(x,y) &\coloneqq x \ \text{ist ein Vielfaches von $y$}
+\end{align*}
+um folgende Prädikate zu formulieren:
+\begin{enumerate}
+    \item Die Zahl $x$ ist kein gemeinsamer Teiler der Zahlen $k$ und $n$. \\ $\Rightarrow \neg (mul(k,x) \land mul(n,x))$
+    \item Alle Vielfache einer natürlichen Zahl mit der Eigenschaft E haben selbst die Eigenschaft E. \\ $\Rightarrow \forall k (mul(k,n) \land E(n) \rightarrow E(k))$
+\end{enumerate}
+
+\newpage
+
+\subsection{Grundlegende Beweistechniken}\label{subsec:grundlegende-beweistechniken}
+
+\subsubsection{Direkter Beweis durch Implikation}
+
+\textbf{Problemstellung:} Es gilt eine Aussage $A \Rightarrow B$ zu beweisen.
+
+\textbf{Lösungsstrategie:} Wir geben, basierend auf der Annahme, dass $A$ wahr ist, \emph{zwingende} Argumente für die Richtigkeit von $B$.
+
+\textbf{Beispiel:} Wir zeigen, wenn $x$ und $y$ gerade Zahlen sind, dann ist auch $x \cdot y$.
+
+Wir nehmen an $x$,$y$ seien gerade natürliche Zahlen.
+Da $x$,$y$ gerade sind, gibt es natürliche Zahlen $n_x$ und $n_y$ so, dass \[x = 2 \cdot n_x \qquad \qquad y = 2 \cdot n_y\] gilt.
+Für das Produkt $x \cdot y$ gilt folglich
+\[ x \cdot y = (2 \cdot n_x) \cdot (2 \cdot n_y) = 2 \cdot (n_x \cdot 2 \cdot n_y)\] und ist somit ersichtlich, dass $x \cdot y$ ein Vielfaches von 2 und somit gerade ist.
+
+\subsubsection{Widerspruchsbeweis}
+
+\textbf{Problemstellung:} Es gilt eine Aussage $A$ zu beweisen.
+
+\textbf{Lösungsstrategie:} Nehmen Sie an, die Aussage $A$ wäre falsch und benützen Sie diese Annahme, um einen Widerspruch herzuleiten.
+Leiten Sie also unter der Annahme der Falschheit von $A$ eine Aussage her, von der bereits bekannt ist, dass sie falsch ist oder im Widerspruch zur Annahme steht.
+
+\textbf{Beispiel:} $A \coloneqq$ ``Es gibt keine grösste natürliche Zahl''.
+
+Wir nehmen an, dass es eine grösste natürliche Zahl gibt, wir nennen sie $m$.
+Wir wissen, dass für jede natürliche Zahl $n$ gilt, dass einerseits $n + 1$ ebenfalls eine natürliche Zahl ist und andererseits $n < n + 1$ erfüllt ist.
+Wir wenden dies auf die natürliche Zahl $m$ an und erhalten damit eine grössere natürliche Zahl (nämlich $m + 1$).
+Dies steht jedoch im Widerspruch zu unserer ursprünglichen Annahme, dass $m$ die grösste natürliche Zahl sei.
+
+\subsubsection{Beweis durch (Gegen-) Beispiel}
+
+\textbf{Problemstellung:} Es gilt zu zeigen, dass eine bestimmte Eigenschaft nicht auf alle Objekte zutrifft.
+
+\textbf{Lösungsstrategie:} Geben Sie konkret ein Objekt an, welches die erwähnte Eigenschaft nicht besitzt.
+
+\textbf{Beispiel:} ``Nicht jede natürliche Zahl ist eine Quadratzahl.''
+
+Weil die Funktion $f(x) = x^2$ monoton ist und weil $1 \cdot 1 < 2 < 2 \cdot 2$ gilt, kann die Zahl 2 nicht als Quadrat von einer natürlichen Zahl geschrieben werden.
+Somit ist 2 das gesuchte Gegenbeispiel.
+
+\subsubsection{Beweis durch Kontraposition}
+
+\textbf{Problemstellung:} Es gilt eine Aussage von der Form $A \Rightarrow B$ zu beweisen.
+
+\textbf{Lösungsstrategie:} Beweisen Sie die Kontraposition $\neg B \Rightarrow \neg A$.
+
+\textbf{Beispiel:} ``Für jede natürliche Zahl $n$ gilt: $(n^2 + 1 = 1) \Rightarrow (n = 0)$''
+
+Ist $n \neq 0$ so folgt, dass auch $n^2 \neq 0$ gilt.
+Dies impliziert, dass für jede weitere natürliche Zahl $m$ die Ungleichung $n^2 + m \neq m$ erfüllt ist.
+Insbesondere gilt daher, dass (der Fall $m=1$) $n^2 + 1 \neq 1$ gilt.
+
+\subsubsection{Beweis einer Äquivalenz}
+
+\textbf{Problemstellung:}  Es gilt eine Aussage von der Form $A \Leftrightarrow B$ zu beweisen.
+
+\textbf{Lösungsstrategie:} Beweisen Sie $B \Rightarrow A$ sowie $A \Rightarrow B$.
+
+\textbf{Beispiel:} ``Für jede natürliche Zahl $n$ gilt: $(n^2 + 1 = 1) \Leftrightarrow (n = 0)$''
+
+Wir haben in den vorhergehenden Beispielen bereits $A \Rightarrow B$ bewiesen, wir müssen also nur noch $B \Rightarrow A$ beweisen.
+Wir nehmen also $B$ an, es gelte also $n = 0$.
+Daraus folgt $n^2 = n \cdot n = 0 \cdot 0 = 0$ und somit $n^2 + 1 = 0 + 1 = 1$.
+

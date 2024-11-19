@@ -1,0 +1,53 @@
+\section{Rekursive Strukturen und die natürlichen Zahlen}\label{sec:rekursive-strukturen-und-die-naturlichen-zahlen}
+
+\subsection{Struktur der natürlichen Zahlen}\label{subsec:struktur-der-naturlichen-zahlen}
+
+Wir listen einige Grundtatsachen über die Struktur der natürlichen Zahlen $\N$ auf:
+\begin{itemize}
+    \item Die Zahl 0 ist eine natürliche Zahl.
+    \item Jede natürliche Zahl $k$ hat genau einen Nachfolger $k + 1$.
+    Der Nachfolger jeder natürlichen Zahl ist wiederum eine natürliche Zahl.
+    \item Die Zahl 0 ist die einzige natürliche Zahl, die kein Nachfolger ist.
+    \item Natürliche Zahlen mit gleichem Nachfolger sind gleich.
+    \item Enthält die Menge $X$ die 0 und mit jeder natürlichen Zahl $k$ auch deren Nachfolger $k + 1$, so bilden die natürlichen Zahlen $\N$ eine Teilmenge von $X$.
+\end{itemize}
+Das letzte Axiom heisst \emph{Induktionsaxiom}, da auf ihm die Beweismethode der vollständigen Induktion beruht.
+
+\begin{definition}{}
+    Die Ordnung $\leq$ auf den natürlichen Zahlen ist durch \[x \leq y \coloneqq \exists k \in \N (x + k = y)\] gegeben.
+    Wir schreiben \[x < y \coloneqq x \leq \land x \neq y\]
+\end{definition}
+
+\subsection{Die vollständige Induktion}\label{subsec:die-vollstandige-induktion}
+
+Die Induktion ist eine sehr wichtige Beweismethode in der Mathematik und in der Informatik.
+Beim klassischen Induktionsbeweis geht es darum, zu zeigen, dass eine Aussage für alle natürlichen Zahlen gilt.
+Sie ist folgendermassen aufgebaut:
+\begin{enumerate}
+    \item \textbf{Induktionsanfang:} Zeige, dass die Aussage für $n = 1$ gilt.
+    \item \textbf{Induktionshypothese:} Wir nehmen an, dass die Aussage für ein allgemeines $n \in \N$ gültig ist.
+    \item \textbf{Induktionsschritt:} Zeige, dass aus der Gültigkeit der Aussage für $n$ (Induktionshypothese) die Gültigkeit der Aussage für $n + 1$ folgt.
+\end{enumerate}
+Eine verallgemeinerte Form der Induktion erlaubt eine stärkere Induktionshypothese, nämlich dass die Aussage gültig \emph{für alle $k \leq n$} sei.
+
+\textbf{Beispiel (Induktion):} Beweise mit der vollständigen Induktion, dass folgendes für alle $n \in \N$ gilt: \[\sum \limits_{i=0}^n 2^i = 2^{n+1} - 1\]
+
+\textbf{Induktionsanfang (B.C.):} n = 0 \[2^0 = 1 = 2^1 - 1\]
+
+\textbf{Induktionshypothese (I.H.):} $\forall n \in \N$ \[\sum \limits_{i=0}^n 2^i = 2^{n+1} - 1\]
+
+\textbf{Induktionsschritt (I.S.):} $n \rightarrow n + 1$
+\begin{align*}
+    \sum \limits_{i=0}^{n+1} 2^i &= \sum \limits_{i=0}^{n} 2^i + 2^{n+1} \\
+    &\stackrel{\text{IH}}{=} 2^{n+1} - 1 + 2^{n+1} \\
+    &= 2 \cdot 2^{n+1} - 1 \\
+    &= 2^{n+2} - 1
+\end{align*}
+
+% TODO: Beispiel rekursiver Algorithmus
+
+% TODO: Beispiel rekursive Definitionen
+
+
+
+
