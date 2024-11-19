@@ -1,0 +1,142 @@
+\section{Integrationsmethoden}\label{sec:integrationsmethoden}
+
+\textbf{Zur Erinnerung:}
+
+$\int x \cdot x \diff{x} = \int x^2 \diff{x} = \frac{x^3}{3} + C$
+
+$\int x \diff{x} \cdot \int x \diff{x} = \left( \frac{x^2}{x} + C_1 \right) \left( \frac{x^2}{2} + C_2 \right) = \frac{x^4}{4} + \left( C_1 + C_2 \right) \frac{x^2}{2} + C_1 C_2$
+
+Im Allgemeinen: $\int u(x) \cdot v(x) \diff{x} \neq \int u(x) \diff{x} \cdot \int v(x) \diff{x}$
+
+Es gibt kein allgemeingültiges Rezept für die Berechnung der Integrale von Produkten.
+Es gibt aber mehrere Integrations-Techniken, die für bestimmte Formen von Produkten (und andere Funktionstypen) zum Ziel führen.
+Da die Integration die Umkehrung der Ableitung ist, könnte man versuchen, die Produkt- und die Kettenregel umzukehren.
+
+\subsection{Integration durch Substitution}\label{subsec:integration-durch-substitution}
+
+Diese Integrationsmethode beruht auf der Kettenregel für die Ableitung: \[F(u(x)) = \int (F(u(x)))' \diff{x} = \int F'(u) \cdot u'(x) \diff{x}\]
+
+\begin{definition}{Rezept: Integration durch Substitution}
+    \begin{enumerate}
+        \item Substitutionsgleichung für $x$: $u = g(x)$
+        \item Substitutionsgleichung für $\diff{x}$: $\frac{\diff{u}}{\diff{x}} = g'(x) \Rightarrow \diff{x} = \frac{\diff{u}}{g'(x)}$
+        \item Integralsubstitution
+        \item Integration
+        \item Rücksubstitution (nur für unbestimmte Integrale)
+    \end{enumerate}
+\end{definition}
+
+\textbf{Beispiel 1:} \[\int_0^{\pi / 4} \sin^2(x) \cdot \cos(x) \diff{x}\]
+\begin{enumerate}
+    \item Substitutionsgleichung für $x$: $u(x) = \sin(x)$
+    \item Substitutionsgleichung für $\diff{x}$: $\frac{\diff{u}}{\diff{x}} = \cos(x) \Rightarrow \diff{x} = \frac{\diff{u}}{\cos(x)}$
+    \item Integralsubstitution: $\int_{0}^{\pi / 4} \sin^2(x)\cos(x) \diff{x} = \int_{0}^{\sqrt{2}/2} u^2 \cdot \cos(x) \cdot \frac{\diff{u}}{\cos(x)} = \int_{0}^{\sqrt{2} / 2} u^2 \diff{u}$
+    \item Integration: $\int_{0}^{\sqrt{2} / 2} u^2 \diff{u} = \left[ \frac{u^3}{3} \right]_{0}^{\sqrt{2}/2} = \frac{1}{3} \left( \frac{\sqrt{2}}{2} \right)^3 \approx 0.12$
+\end{enumerate}
+
+\textbf{Beispiel 2:} \[ \int \frac{6x^2 - 12}{x^3 - 6x + 1} \diff{x} = \int (6x^2 - 12) \cdot (x^3 - 6x + 1)^{-1} \diff{x} \]
+\begin{enumerate}
+    \item Substitutionsgleichung für $x$: $u(x) = x^3 - 6x + 1$
+    \item Substitutionsgleichung für $\diff{x}$: $\frac{\diff{u}}{\diff{x}} = 3x^2 - 6 \Rightarrow \diff{x} = \frac{\diff{u}}{3x^2 - 6}$
+    \item Integralsubstitution: $\int (6x^2 - 12)(x^3 - 6x + 1)^{-1} \diff{x} = \int (6x^2 -12) \cdot u^{-1} \cdot \frac{\diff{u}}{3x^2 - 6} = 2 \cdot \int \frac{1}{u} \diff{u}$
+    \item Integration: $2 \cdot \int \frac{1}{u} \diff{u} = 2 \cdot (\ln |u| + C) = 2 \ln |u| + \tilde{C} \;\;\;\; (\tilde{C} = 2C)$
+    \item Rücksubstitution: $2 \ln |u| + \tilde{C} = 2 \ln |x^3 - 6x + 1| + \tilde{C}$
+    \item Kontrolle: $(2 \ln |x^3 - 6x + 1|)' = \frac{2}{x^3 -6x + 1} \cdot (3x^3 - 6) = \frac{6x^2 - 12}{x^3 - 6x + 1}$
+\end{enumerate}
+
+\begin{subbox}{Satz}
+    Für eine Funktion $f$ und Konstanten $a,b$ gilt: \[\int f(ax + b) \diff{x} = \frac{1}{a} \cdot F(ax + b)\]
+\end{subbox}
+
+\textbf{Beispiel:} $\int \cos(5x + 7) \diff{x}$
+
+$f(u) = \cos(u)$, $a = 5$, $b = 7$, $F(u) = \sin(u)$
+
+Somit ist: $\int \cos(5x + 7) \diff{x} = \frac{1}{a} \cdot F(ax + b) = \frac{1}{5} \cdot \sin(5x + 7)$
+
+\subsection{Partielle Integration}\label{subsec:partielle-integration}
+
+Diese Integrationsmethode beruht auf der Produktregel für die Ableitung: \[ (u(x) \cdot (v(x)))' = u'(x) \cdot v(x) + u(x) \cdot v'(x) \]
+
+Beide Seiten der Gleichung integrieren liefert: \[ \int (u(x) \cdot (v(x)))' \diff{x} = \int u'(x) \cdot v(x) + u(x) \cdot v'(x) \diff{x}\]
+
+Die linke Seite ist gleich $u(x) \cdot v(x)$.
+Die rechte Seite ist so speziell, dass Integrale dieser Form wohl nur sehr selten auftreten.
+Wir können den entsprechenden Ausdruck jedoch als Summe von zwei Integralen schreiben - die einzelnen Integrale sind nun nicht mehr ganz so exotisch.
+Dies führt zur Gleichung \[ u(x) \cdot v(x) = \int u'(x) \cdot v(x) \diff{x} + \int u(x) \cdot v'(x) \diff{x} \]
+Auflösen nach einem der beiden Integrale ergibt die Formel:
+\begin{definition}{Partielle Integration (Unbestimmte Integrale)}
+    \[\int u(x) \cdot v'(x) \diff{x} = u(x) \cdot v(x) - \int u'(x) \cdot v(x) \diff{x}\]
+\end{definition}
+
+\textbf{Beispiel:} $\int x \cdot e^x \diff{x}$
+\begin{multicols}{2}
+    \begin{itemize}[label={}]
+        \item $u(x) = x$
+        \item $v'(x) = e^x$
+        \item $u'(x) = 1$
+        \item $v(x) = e^x$
+    \end{itemize}
+\end{multicols}
+$\int x \cdot e^x \diff{x} = x \cdot e^x - \int 1 \cdot e^x \diff{x} = x \cdot e^x - e^x + C = (x - 1)e^x + C$
+
+Die oben hergeleitete Formel lässt sich auch auf bestimmte Integrale anwenden:
+\begin{definition}{Partielle Integration (Bestimmte Integrale)}
+    \[ \int_{a}^{b} u(x) \cdot v'(x) \diff{x} = \left[ u(x) \cdot v(x) \right]_{a}^{b} - \int_{a}^{b} u'(x) \cdot v(x) \diff{x}\]
+\end{definition}
+
+\subsection{Integration durch Partialbruchzerlegung}\label{subsec:integration-durch-partialbruchzerlegung}
+
+Diese Methode ist auf die Integration von \emph{echt gebrochenrationalen} Funktionen zugeschnitten. \[ f(x) = \frac{g(x)}{h(x)} = \frac{a_m x^m + a_{m-1} x^{m-1} + \dots + a_1 x + a_0}{b_n x^n + b_{n-1} x^{n-1} + \dots + b_1 x + b_0} \;\;\;\; \text{mit $m < n$}
+\]
+
+Diese Integrationsmethode besteht aus zwei Teilen: \textbf{Partialbruchzerlegung} und \textbf{Integration der Partialbrüche}.
+
+\begin{definition}{Rezept: Integration durch Partialbruchzerlegung}
+    I Partialbruchzerlegung
+    \begin{enumerate}
+        \item Reelle Nullstellen des Nenners $h(x)$ mit Multiplizitäten bestimmen
+        \item Jeder dieser Nullstellen wird eine Summe von Brüchen zugeordnet:
+        \begin{align*}
+            &x_1 \text{ist einfache Nullstelle} \rightarrow \frac{A}{x - x_1} \\
+            &x_1 \text{ist doppelte Nullstelle} \rightarrow \frac{A_1}{x - x_1} + \frac{A_2}{(x - x_1)^2} \\
+            &x_1 \text{ist $r$-fache Nullstelle} \rightarrow \frac{A_1}{x - x_1} + \frac{A_2}{(x - x_1)^2} + \dots + \frac{A_r}{(x - x_1)^r}
+        \end{align*} $A_1$, $A_2$, $\dots$, $A_r$ sind (zunächst noch unbekannte) reelle Konstanten.
+        \item $f(x)$ wird mit der Summe aller Partialbrüche gleichgesetzt.
+        \item Bestimmung der Konstanten $A$, $A_1$, $A_2$, \dots, $A_r$, etc.
+        \begin{enumerate}
+            [label=(\roman*)]
+            \item Alle Brüche auf einen gemeinsamen Nenner bringen.
+            \item Durch Einsetzen von $x$-Werten (z.B.\ Nullstellen der entsprechenden Polynome) erhält man ein lineares Gleichungssystem.
+            \item Gleichungssystem lösen (z.B.\ mit Gauss-Algorithmus)
+        \end{enumerate}
+    \end{enumerate}
+    II Integration der Partialbrüche
+    \begin{align*}
+        \int \frac{1}{x - x_0} \diff{x} &= \ln |x - x_0| + C \\
+        \int \frac{1}{(x - x_0)^r} \diff{x} &= \frac{1}{(1 - r)(x - x_0)^{r-1}} + C
+    \end{align*}
+\end{definition}
+
+\textbf{Beispiel:}
+Bestimmen Sie $\int \frac{2x^3 - 14x^2 + 14x + 30}{x^2 - 4} \diff{x}$
+
+Die Funktion im Integral ist \textbf{unecht gebrochen rational}.
+
+\begin{itemize}
+    \item Umformung mithilfe von Polynomdivision: \[(2x^3 - 14x^2 + 14x + 30) : (x^2 - 4) = 2x - 14 + \frac{22x - 26}{x^2 - 4}\]
+    \item I Partialbruchzerlegung des echt gebrochenen rationalen Teils:
+    \begin{enumerate}
+        \item Nullstellen vom Nenner: $x_1 = 2$, $x_2 = -2$
+        \item Partialbruchzerlegung: $x_1 \rightarrow \frac{A}{x-2}$, $x_2 \rightarrow \frac{B}{x+2}$
+        \item Gleichsetzen: $\frac{22x - 26}{x^2 -4} = \frac{A}{x - 2} + \frac{B}{x + 2} \left( = \frac{A(x + 2) + B(x - 2)}{(x-2)(x+2)} \right)$ \\ $x = 2$ einsetzen: $18 = 4A \Rightarrow A = 4.5$ \\ $x = -2$ einsetzen: $-70 = -4B \Rightarrow B = 17.5$ \\ Somit: $\frac{22x - 26}{x^2 - 4} = \frac{4.5}{x - 2} + \frac{17.5}{x + 2}$
+    \end{enumerate}
+    \item II Integration:
+    \begin{align*}
+        \int \frac{2x^3 - 14x^2 + 14x + 30}{x^2 - 4}\diff{x} &= \int 2x - 14 + \frac{4.5}{x - 2} + \frac{17.5}{x + 2} \diff{x} \\
+        &= x^2 - 14x + 4.5 \ln |x - 2| + 17.5 \ln |x + 2| + C
+    \end{align*}
+\end{itemize}
+
+\textbf{WICHTIG:} Die Partialbruchzerlegung funktioniert für \textcolor{red}{echt gebrochen rationale} Funktionen.
+Falls die gegebene Funktion dieses Kriterium nicht erfüllt, wird vorgängig eine Polynomdivision benötigt.

@@ -1,0 +1,149 @@
+\section{Approximation durch Polynomfunktionen (Taylor-Reihen)}\label{sec:approximation-durch-polynomfunktionen}
+
+\subsection{Taylor-Reihe}\label{subsec:taylor-reihe}
+
+\begin{definition}{Taylor-Reihe}
+    Wir betrachten eine Funktion $f$ und eine Stelle $x_0$ in ihrem Definitionsbereich.
+    \begin{itemize}
+        \item Das \emph{Taylor-Polynom vom Grad $n$ von $f$ um $x_0$} bezeichnet das Polynom \[p_n = \sum_{k=0}^{n} \frac{f^{(k)} (x_0)}{k!} \cdot (x - x_0)^k\]
+        \item Die \emph{Taylor-Reihe} von $f$ um $x_0$ bezeichnet die unendliche Reihe \[t_f(x) = \sum_{k=0}^{\infty} \frac{f^{(k)} (x_0)}{k!} \cdot (x - x_0)^k\]
+    \end{itemize}
+\end{definition}
+
+\textbf{Beispiel 1:} Bestimmen Sie die Taylor-Reihe von $f(x) = e^x$ um $x_0 = 0$.
+
+$f(x_0) = 1$, $f'(x_0) = e^{x_0} = 1$, $f''(x_0) = e^{x_0} = 1$
+
+Allgemein: $f^{(k)}(x_0) = e^{x_0} = 1$
+
+$\Rightarrow t_f(x) = \sum_{k=0}^{\infty} \frac{1}{k!} x^k$
+
+\textbf{Beispiel 2:} Bestimmen Sie die Taylor-Reihe von $f(x) = e^{-x^2}$ um $x_0 = 0$
+
+Einsetzen in die Taylor-Reihe von $e^z \left(= 1 + z + \frac{z^2}{2!} + \frac{z^3}{3!} + \dots \right)$: \[t_f(x) = 1 - x^2 + \frac{x^4}{2!} - \frac{x^6}{3!} + \dots = \sum_{k=0}^{\infty} (-1)^k \cdot \frac{1}{k!} \cdot x^{2k}\]
+
+\textbf{Beispiel 3:} Bestimmen Sie die Taylor-Reihe von $f(x) = \sin(x^3)$ um $x_0 = 0$
+
+$\sin(z) = z - \frac{z^3}{3!} + \frac{z^5}{5!} - \dots$
+
+Setzt man in dieser Reihe $z \coloneqq x^3$ ein, so bekommt man: \[t_f(x) = x^3 - \frac{x^9}{3!} + \frac{x^{15}}{5!} - \dots = \sum_{k=0}^{\infty} (-1)^k \cdot \frac{(x^3)^{2k+1}}{(2k + 1)!} = \sum_{k=0}^{\infty} \frac{(-1)^k \cdot x^{6k + 3}}{(2k + 1)!}\]
+
+\subsection{Konvergenz}\label{subsec:konvergenz}
+
+Die Taylor-Reihe hat die Eigenschaft, dass sie in der ``Nähe'' von $x_0$ die ursprüngliche Funktion sehr gut approximiert.
+Bei sehr vielen Funktionen erreicht man sogar noch mehr: Bei ihnen ist der Funktionswert in einem bestimmten Intervall um $x_0$ herum exakt gleich dem Wert der Taylor-Reihe.
+Es gilt also \[f(x) = \sum_{k=0}^{\infty} a_k = (x - x_0)^k\]
+\textbf{Beispiele:}
+\begin{itemize}
+    \item $f(x) = \sin(x)$ mit $x_0 = 0$, im Intervall $\R$
+    \item $f(x) = e^x$ mit $x_0 = 1$, im Intervall $\R$
+    \item $f(x) = \frac{1}{x^2 + 1}$ mit $x_0 = 0$, im Intervall $(-1,1)$
+\end{itemize}
+
+In solchen Fällen sagt man, die Funktion $f(x)$ sei (im entscheidenden Intervall) \emph{durch ihre Taylor-Reihe $t_f(x)$ darstellbar}.
+
+\textbf{Bemerkung:} Es gibt Kriterien, mit deren Hilfe man das entsprechende Intervall bestimmen kann, beispielsweise das sogenannte ``Quotientenkriterium'' und das sogenannte ``Wurzelkriterium''.
+
+\begin{definition}{Konvergenz}
+    Der \emph{Konvergenzbereich} bezeichnet all diejenigen $x$-Werte, bei denen $f(x)$ genau dem Wert der Taylor-Reihe entspricht.
+\end{definition}
+
+Für die obigen Beispiele bedeutet dies:
+\begin{itemize}
+    \item $f(x) = \sin(x)$ mit $x_0 = 0$ hat den Konvergenzbereich $\R$
+    \item $f(x) = e^x$ mit $x_0 = 1$ hat den Konvergenzbereich $\R$
+    \item Bei $f(x) = \frac{1}{x^2 + 1}$ mit $x_0 = 0$ gehört $(-1,1)$ zum Konvergenzbereich
+\end{itemize}
+
+\begin{definition}{Potenzreihe}
+    \[P(x) = \sum_{k=0}^{\infty} a_k \cdot (x - x_0)^k\]
+\end{definition}
+
+\subsubsection{Konvergenzkriterien}
+
+\begin{definition}{Quotientenkriterium}
+    Für eine beliebige Potenzreihe $P(x) = \sum_{k=0}^{\infty} a_k (x - x_0)^k$ und $r \coloneqq \lim_{k \rightarrow \infty} \left| \frac{a_k}{a_{k+1}} \right|$ gilt:
+    \begin{itemize}
+        \item Alle $x$ mit $|x - x_0| < r$ gehören zum Konvergenzbereich
+        \item Alle $x$ mit $|x - x_0| > r$ gehören \emph{nicht} zum Konvergenzbereich
+    \end{itemize}
+\end{definition}
+
+\textbf{Konvention:} Falls der betrachtete Ausdruck gegen unendlich geht, so setzen wir $r$ auf ``$\infty$'', und alle $x \in \R$ gehören zum Konvergenzbereich.
+
+\begin{definition}{Konvergenzradius}
+    Das Quotientenkriterium besagt, dass \emph{alle} Werte, die sich innerhalb eines gewissen Maximal-Abstandes zu $x_0$ befinden, zum Konvergenzbereich gehören, während \emph{alle} Werte, die diesen Abstand überschreiten, nicht dazugehören.
+    Es lässt sich zeigen, dass \emph{alle Potenzreihen} (auch diejenigen, für die das Quotientenkriterium nicht anwendbar ist) diese Eigenschaft haben!
+    Es gilt also:
+
+    Für \emph{jede} Potenzreihe $P(x) = \sum_{k=0}^{\infty} a_k (x - x_0)^k$ gibt es einen Abstand $r$, so dass
+    \begin{itemize}
+        \item alle $x \in (x_0 - r, x_0 + r)$ zum Konvergenzbereich gehören
+        \item alle $x \in (-\infty, x_0 - r) \cup (x_0 + r, \infty)$ nicht zum Konvergenzbereich gehören
+    \end{itemize}
+\end{definition}
+
+\subsection{Potenzreihe und Polynome}\label{subsec:potenzreihe-und-polynome}
+
+Man kann zeigen, dass \emph{innerhalb} des Konvergenzbereiches Potenzreihen grundsätzlich wie Polynome behandelt werden können:
+\begin{itemize}
+    \item Die Ableitung von $P(x)$ lässt sich berechnen, indem man jedes Glied einzeln ableitet.
+    \item Das Integral von $P(x)$ lässt sich berechnen, indem man jedes Glied einzeln integriert.
+    \item Addition, Subtraktion und Multiplikation kann man ebenfalls wie bei gewöhnlichen Polynomen durchführen.
+\end{itemize}
+
+\textbf{Beispiel:} Wir betrachten die Potenzreihe $P(x) = \sum_{k=0}^{\infty} x^k = 1 + x + x^2 + x^3 + x^4 + \dots$
+\begin{itemize}
+    \item $P'(x) = 1 + 2x + 3x^2 + 4x^3 + \dots = \sum_{k=0}^{\infty} (k + 1)x^k$
+    \item $\int P(x) \diff{x} = x + \frac{x^2}{2} + \frac{x^3}{3} + \frac{x^4}{4} + \dots = \sum_{k=0}^{\infty} \frac{1}{k + 1} \cdot x^{k + 1}$
+    \item $P(x) + \sum_{k=0}^{\infty} kx^k = (1 + x + x^2 + x^3 + x^4 + \dots) + (x + 2x^2 + 3x^3 + \dots) = 1 + 2x + 3x^2 + 4x^3 + \dots = \sum_{k=0}^{\infty} (k + 1)x^k$
+\end{itemize}
+
+\subsubsection{Fehlerabschätzung bei der Taylor-Reihe}
+
+Für viele Anwendungen ist es ``handlicher'', nur mit den ersten paar Summanden des Polynoms zu rechnen und die restlichen zu ignorieren.
+Beachtlicherweise führt dies in ganz vielen Fällen nur zu kleinen, verkraftbaren Genauigkeitseinbussen!
+
+\textbf{Eine Formel für Fehlerabschätzung:} Der Fehler, der bei der Beschränkung auf die Glieder von Grad $\leq n$ entsteht, bezeichnen wir mit $R_n$. \[R_n(x) = \sum_{k=0}^{\infty} \frac{f^{(k)}(x_0)}{k!} (x - x_0) - \sum_{k=0}^{n} \frac{f^{(k)}(x_0)}{k!} (x - x_0)^k\]
+
+\subsection{Anwendungen der Taylor-Reihe}\label{subsec:anwendungen-der-taylor-reihe}
+
+\subsubsection{Numerische Berechnungen von Funktionswerten}
+
+\textbf{Beispiel:} Bestimmen Sie für den Wert $x=1.2$ zunächst mit dem Taschenrechner den auf 4 Kommastellen gerundeten Wert von $\sin(x)$.
+Bestimmen Sie dann die \emph{Anzahl} benötigter Summanden der Taylor-Reihe, um den zuerst ermittelten Wert zu erhalten.
+
+$\sin(1.2) = 0.9320$, Taylor-Reihe: $\sin(x) = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \dots$
+
+$1.2 - \frac{1.2^3}{3!} + \frac{1.2^5}{5!} = 0.9327 \Rightarrow$ 3 Summanden sind zu wenig!
+
+$1.2 - \frac{1.2^3}{3!} + \frac{1.2^5}{5!} + \frac{1.2^7}{7!} = 0.9320 \Rightarrow$ 4 Summanden reichen aus.
+
+\subsubsection{Approximation für Integrale}
+
+\textbf{Beispiel:} Bestimmen Sie einen Näherungswert für das Integral $\int_{0}^{1} e^{x^2} \diff{x}$, indem Sie mit einem Taylor-Polynom vom Grad 2 arbeiten.
+
+Bestimmung des gesuchten Taylor-Polynoms: $e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \dots$
+
+Also ist $e^{x^2} = 1 + x^2 + \frac{x^4}{2!} + \frac{x^6}{3!} + \dots$
+
+Verwendet man das Taylor-Polynom vom Grad 2, so ergibt sich die Abschätzung $\displaystyle \int_{0}^{1} e^{x^2} \diff{x} \approx \int_{0}^{1} (1 + x^2) \diff{x} = \left[ x + \frac{x^3}{3} \right]_{0}^{1} = \frac{4}{3}$
+
+\subsubsection{Bestimmung von Grenzwerten}
+
+\textbf{Beispiel:} Bestimmen Sie $\lim_{x \rightarrow 0} \frac{1 - \cos(x)}{x^2}$
+
+Taylor-Reihe: $\cos(x) = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \frac{x^6}{6!} + \dots$
+
+Einsetzen ergibt:
+\begin{align*}
+    \lim_{x \rightarrow 0} &= \lim_{x \rightarrow 0} \frac{1 - (1 - \frac{x^2}{2} + \frac{x^4}{4!} - \frac{x^6}{6!} + \dots)}{x^2} = \lim_{x \rightarrow 0} \frac{ \frac{x^2}{2} - \frac{x^4}{4!} + \frac{x^6}{6!} - \dots}{x^2} \\
+    &= \lim_{x \rightarrow 0} \frac{1}{2} - \frac{x^2}{4!} + \frac{x^4}{6!} - \dots = \frac{1}{2}
+\end{align*}
+
+\textbf{Bemerkung:} Der letzte Schritt folgt durch Einsetzen von $x=0$
+
+\begin{definition}{Regel von Bernoulli-Hopital}
+    Gegeben sind zwei Funktionen $f(x), g(x)$, die in einer Umgebung der Stelle $x_0$ differenzierbar sind und für die der Bruch $\frac{f(x)}{g(x)}$ beim Grenzübergang $x \to x_0$ auf einen unbestimmten Ausdruck der Form $\frac{0}{0}$ oder $\frac{\infty}{\infty}$.
+    Dann gilt: \[\lim \limits_{x \to x_0} \frac{f(x)}{g(x)} = \lim \limits_{x \to x_0} \frac{f'(x)}{g'(x)}\]
+\end{definition}
