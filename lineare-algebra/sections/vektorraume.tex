@@ -1,0 +1,212 @@
+\sect{Vektorräume}
+
+\ssect{Definition}
+
+Ein \textbf{reeller Vektorraum} besteht aus einer nichtleeren Menge $\V$ von Elementen, die wir Vektoren nennen.
+Auf der Menge $\V$ gibt es die folgenden Vorschriften:
+\begin{itemize}
+    \item Die \textbf{Addition}: Für alle Vektoren $\vec{a}$ und $\vec{b}$ in $\V$ ist der Vektor $\vec{a} + \vec{b}$ wieder in $\V$.
+    \item Die \textbf{skalare Multiplikation}: Für alle Vektoren $\vec{a} \in \V$ und alle Skalare $\lambda \in \R$ ist der Vektor $\lambda \vec{a}$ wieder in $\V$.
+\end{itemize}
+Ferner sollen für alle Vektoren $\vec{a}, \vec{b}, \vec{c}$ aus $\V$ und alle Skalare $\lambda, \mu$ aus $\R$ folgende acht Rechengesetze gelten:
+\begin{enumerate}
+    \item \textbf{Kommutativität} für die Addition: $\vec{a} + \vec{b} = \vec{b} + \vec{a}$
+    \item \textbf{Assoziativität} für die Addition: $\vec{a} + (\vec{b} + \vec{c}) = (\vec{a} + \vec{b}) + \vec{c}$
+    \item \textbf{Neutralelement} der Addition $\vec{0}$: $\vec{a} + \vec{0} = \vec{a}$
+    \item Existenz \textbf{entgegengesetzter Elemente}: Zu jedem $\vec{a} \in \V$ gibt es genau ein entgegengesetztes Element $-\vec{a} \in \V$ mit $\vec{a} + (-\vec{a}) = \vec{0}$
+    \item \textbf{Distributivität}: $\lambda (\vec{a} + \vec{b}) = \lambda \vec{a} + \lambda \vec{b}$
+    \item \textbf{Distributivität}: $(\lambda + \mu) \vec{a} = \lambda \vec{a} + \mu \vec{a}$
+    \item \textbf{Assoziativität} für die Multiplikation: $\lambda (\mu \vec{a}) = (\lambda \mu) \vec{a}$
+    \item Die reelle Zahl 1 ist das \textbf{Neutralelement} der skalaren Multiplikation: $1 \cdot \vec{a} = \vec{a}$
+\end{enumerate}
+
+\sssect{Unterraum}
+
+$V$ sei ein Vektorraum und $U$ eine nichtleere Teilmenge von $V$.
+Ist $U$ ein Vektorraum bzgl.\ der Addition und skalaren Multiplikation in $V$, so ist $U$ ein \textbf{Unterraum} von $V$.
+
+\textbf{Satz Unterraumkriterium:} Es sei $V$ ein Vektorraum und $U$ eine nichtleere Teilmenge von $V$.
+$U$ ist genau dann ein \textbf{Unterraum von $V$}, wenn die beiden folgenden Bedingungen erfüllt sind:
+\begin{itemize}
+    \item $\vec{a} + \vec{b} \in U$ mit $\forall \vec{a}, \vec{b} \in U$
+    \item $\lambda \vec{a} \in U$ mit $\forall \vec{a} \in U, \forall \lambda \in \R$
+\end{itemize}
+
+Es gilt:
+\begin{itemize}
+    \item Eine Ebene ist genau dann ein Unterraum von $\R^3$, wenn sie den Ursprung enthält.
+    \item Eine durch den Ursprung gehende Gerade in $\R^2$ ist ein Unterraum von $\R^2$.
+    \item Das Neutralelement muss zu jedem Unterraum gehören.
+\end{itemize}
+
+\ssect{Lineare Hülle}
+
+Sei $V$ ein Vektorraum und seien $\vec{v}_1, \dots, \vec{v}_n \in V$.
+Die Menge aller Linearkombinationen der Vektoren $\vec{v}_1, \dots, \vec{v}_n$ ist
+\[\text{Lin}(\vec{v}_1, \dots, \vec{v}_n) = \{ \vec{x} \in V \mid \vec{x} = \lambda_1 \vec{v}_1 + \dots + \lambda_n \vec{v}_n\}\]
+und heisst \textbf{lineare Hülle} (auch der \textbf{Spann}) der Vektoren $\vec{v}_1, \dots, \vec{v}_n$.
+Man sagt auch, dass $\vec{v}_1, \dots, \vec{v}_n$ die Menge $\text{Lin}(\vec{v}_1, \dots, \vec{v}_n)$ erzeugen, oder dass $\vec{v}_1, \dots, \vec{v}_n$ ein \textbf{Erzeugendensystem} von $\text{Lin}(\vec{v}_1, \dots, \vec{v}_n)$ bilden.
+
+\textbf{Anmerkung:} Die lineare Hülle der Vektoren $\vec{v}_1, \dots, \vec{v}_n \in V$ lässt sich auch als $Span(\vec{v}_1, \dots, \vec{v}_n)$ schreiben.
+
+\textbf{Satz:} Sei $V$ ein Vektorraum und seien $\vec{v}_1, \dots, \vec{v}_n \in V$.
+Die Menge $\text{Lin}(\vec{v}_1, \dots, \vec{v}_n)$ ist ein Unterraum von $V$.
+
+\ssect{Lineare Abhängigkeit/Unabhängigkeit}
+
+Eine Familie von Vektoren $\vec{v}_1, \dots, \vec{v}_m$ heissen \textbf{linear unabhängig}, wenn die folgende Vektorgleichung \[\lambda_1 \vec{v}_1 + \dots + \lambda_m \vec{v}_m = \vec{0}\] nur für verschwindende Koeffizienten $\lambda_1, \dots, \lambda_m \in \R$ erfüllt werden kann.
+Andernfalls heissen die $m$ Vektoren \textbf{linear abhängig}, d.h.\ es ist mind.\ ein Koeffizient ungleich Null.
+
+Es gelten:
+\begin{itemize}
+    \item $\vec{a}_1, \dots, \vec{a}_n \in \R^n \text{ linear abhängig } \Leftrightarrow \det(A) = 0$
+    \item $\vec{a}_1, \dots, \vec{a}_n \in \R^n \text{ linear unabhängig } \Leftrightarrow \det(A) \neq 0$
+\end{itemize}
+
+\textbf{Verfahren zur Bestimmung, ob Vektoren linear abhängig sind oder nicht:}
+\begin{enumerate}
+    \item Man bildet die folgende erweiterte Koeffizientenmatrix:
+    \[(\vec{a}_1 \ \dots \ \vec{a}_n \mid \vec{0}) = \left(
+    \begin{array}{ccc|c}
+        a_{11} & \ldots & a_{1n} & 0      \\
+        \vdots & \ddots & \vdots & \vdots \\
+        a_{m1} & \ldots & a_{mn} & 0
+    \end{array}
+    \right)\]
+    \item Man bringt diese Matrix mit Gauss-Verfahren auf ZSF.\
+    \item Hat die erweiterte Koeffizientenmatrix auf ZSF nur führende Variablen (d.h.\ ist der Rang der Matrix gleich $n$), dann hat das System genau eine Lösung und die Vektoren sind \textbf{linear unabhängig}.\\
+    Besitzt die erweiterte Koeffizientenmatrix auf ZSF freie Variablen (d.h.\ ist der Rang der Matrix kleiner als $n$), dann hat das System unendlich viele Lösungen.
+    Somit die Vektoren \textbf{linear abhängig}.
+\end{enumerate}
+
+\ssect{Basis und Dimension}
+
+Die Vektoren $\vec{v}_1, \dots, \vec{v}_n \in V$ bilden eine \textbf{Basis} $\B = \{ \vec{v}_1, \dots, \vec{v}_n \}$ des Vektorraums $V$, wenn gilt:
+\begin{itemize}
+    \item Die Vektoren sind linear unabhängig.
+    \item $\text{Lin}(\vec{v}_1, \dots, \vec{v}_n) = V$, d.h.\ jeder Vektor lässt sich als Linearkombination der Vektoren $\vec{v}_1, \dots, \vec{v}_n$ darstellen: \[\vec{v} = \lambda_1 \vec{v}_1 + \dots + \lambda_n \vec{v}_n\]
+\end{itemize}
+Die Vektoren $\vec{v}_1, \dots, \vec{v}_n$ heissen \textbf{Basisvektoren} und die Skalare $\lambda_1, \dots, \lambda_n$ sind die \textbf{Koordinaten von $\vec{v}$ bezüglich der Basis $\B$}.
+
+\textbf{Anmerkung:}
+\begin{itemize}
+    \item Die Koordinaten $\lambda_1, \dots, \lambda_n$ sind eindeutig bestimmt, d.h.\ es gibt genau einen $\lambda_1, \dots, \lambda_n$, sodass gilt: \[\vec{v} = \lambda_1 \vec{v}_1 + \dots + \lambda_n \vec{v}_n\]
+    \item Ein Erzeugendensystem eines Vektorraumes kann linear abhängige oder unabhängige Vektoren enthalten.
+    Eine Basis ist ein Erzeugendensystem, bei dem alle Vektoren \textbf{linear unabhängig} sind.
+    \item Die Basis eines Vektorraumes ist \textbf{nicht eindeutig}, d.h.\ es gibt verschiedene Basen in einem Vektorraum.
+\end{itemize}
+
+Die Anzahl der Vektoren einer Basis eines Vektorraumes $V$ ist die \textbf{Dimension} des Vektorraumes.
+Hierfür schreiben wir $\dim(V)$.
+
+\textbf{Satz:} Wir betrachten die Vektoren $\vec{a}_1, \dots, \vec{a}_n \in \R^n$ sowie die $n \times n$ Matrix $A$, die entsteht, wenn wir die Vektoren nebeneinander schreiben.
+Die folgenden Aussagen sind äquivalent:
+\begin{itemize}
+    \item Die Vektoren $\vec{a}_1, \dots, \vec{a}_n$ bilden eine Basis von $\R^n$
+    \item $\text{rang}(A) = n$
+    \item $\det(A) \neq 0$
+    \item $A$ ist invertierbar
+    \item Das LGS $A \vec{x} = \vec{b}$ hat eine eindeutige Lösung
+\end{itemize}
+
+\textbf{Beispiel:} Folgende Matrizen bilden eine Basis für $\R^{2 \times 2}$:
+\[A_1 = \left(
+\begin{array}{cc}
+    1 & 0 \\ 0 & 0
+\end{array}
+\right), A_2 = \left(
+\begin{array}{cc}
+    0 & 1 \\ 0 & 0
+\end{array}
+\right), A_3 = \left(
+\begin{array}{cc}
+    0 & 0 \\ 1 & 0
+\end{array}
+\right), A_4 = \left(
+\begin{array}{cc}
+    0 & 0 \\ 0 & 1
+\end{array}
+\right)\]
+Es gilt nämlich:
+\begin{itemize}
+    \item Diese Matrizen sind linear unabhängig:
+    \begin{align*}
+        \lambda_1 A_1 + \lambda_2 A_2 + \lambda_3 A_3 + \lambda_4 A4 &= 0 \\
+        \left(
+        \begin{array}{cc}
+            \lambda_1 & 0 \\ 0 & 0
+        \end{array}
+        \right) + \left(
+        \begin{array}{cc}
+            0 & \lambda_2 \\ 0 & 0
+        \end{array}
+        \right) + \left(
+        \begin{array}{cc}
+            0 & 0 \\ \lambda_3 & 0
+        \end{array}
+        \right) + \left(
+        \begin{array}{cc}
+            0 & 0 \\ 0 & \lambda_4
+        \end{array}
+        \right) &= \left(
+        \begin{array}{cc}
+            0 & 0 \\ 0 & 0
+        \end{array}
+        \right) \\
+        \left(
+        \begin{array}{cc}
+            \lambda_1 & \lambda_2 \\ \lambda_3 & \lambda_4
+        \end{array}
+        \right) &= \left(
+        \begin{array}{cc}
+            0 & 0 \\ 0 & 0
+        \end{array}
+        \right) \\
+        \Rightarrow \lambda_1 = \lambda_2 = \lambda_3 = \lambda_4 &= 0
+    \end{align*}
+    \item Für eine beliebige Matrix $A = \left(
+    \begin{array}{cc}
+        a_{11} & a_{12} \\
+        a_{21} & a_{22}
+    \end{array}
+    \right)$ gilt:
+    \begin{align*}
+        A &= \left(
+        \begin{array}{cc}
+            a_{11} & 0 \\
+            0      & 0
+        \end{array}
+        \right) + \left(
+        \begin{array}{cc}
+            0 & a_{12} \\
+            0 & 0
+        \end{array}
+        \right) + \left(
+        \begin{array}{cc}
+            0      & 0 \\
+            a_{21} & 0
+        \end{array}
+        \right) + \left(
+        \begin{array}{cc}
+            0 & 0      \\
+            0 & a_{22}
+        \end{array}
+        \right) \\
+        &= a_{11} A_1 + a_{12} A_2 + a_{21} A_3 + a_{22} A_4
+    \end{align*}
+    Das heisst, dass $A$ sich als Linearkombination von $A_1, \dots, A_4$ darstellen lässt.
+\end{itemize}
+
+\ssect{Koordinatenvektor}
+
+Seien $V$ ein reeller Vektorraum und $\B = \{\vec{v}_1, \dots, \vec{v}_n\}$ eine Basis von $V$.
+Sei $\vec{v}$ ein beliebiger Vektor aus $V$ mit der Darstellung:
+\[\vec{v} = \lambda_1 \vec{v}_1 + \dots + \lambda_n \vec{v}_n\]
+wobei die eindeutig bestimmten Skalare $\lambda_1, \dots, \lambda_n$ die Koordinaten von $\vec{v}$ bezüglich $\B$ sind.
+Dann nennt man den Vektor
+\[\vec{v}_{\B} = \left(
+\begin{array}{c}
+    \lambda_1 \\ \vdots \\ \lambda_n
+\end{array}
+\right)_{\B}\]
+den \textbf{Koordinatenvektor} oder die \textbf{Komponentendarstellung von $\vec{v}$ bezüglich $\B$}.
