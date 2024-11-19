@@ -1,0 +1,125 @@
+% Basic settings
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[german]{babel}
+
+% Layout settings
+\usepackage[top=1.5cm, bottom=1.5cm, left=1.5cm, right=1.5cm]{geometry}
+\usepackage[compact]{titlesec}
+\titlespacing{\section}{0pt}{0pt}{0pt}
+\titlespacing{\subsection}{0pt}{0pt}{0pt}
+\titlespacing{\subsubsection}{0pt}{0pt}{0pt}
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% Custom enumerate labels
+\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
+
+% Two columns
+\usepackage{multicol}
+
+% Colored boxes
+\usepackage[most]{tcolorbox}
+
+% package to get colored text
+\usepackage{xcolor}
+
+% A base set of colorbox that is then customised
+\tcbset {
+    base/.style={
+        boxrule=0mm,
+        leftrule=1mm,
+        left=1.75mm,
+        arc=0mm,
+        fonttitle=\bfseries,
+        colbacktitle=black!10!white,
+        coltitle=black,
+        toptitle=0.75mm,
+        bottomtitle=0.25mm,
+        title={#1}
+    }
+}
+
+% Box with red line for definitions
+\definecolor{bittersweet}{rgb}{1.0, 0.44, 0.37}
+\newtcolorbox{definition}[1]{
+    colframe=bittersweet,
+    base={#1}
+}
+
+% Box with blue line for mainboxes
+\definecolor{brandblue}{rgb}{0.34, 0.7, 1}
+\newtcolorbox{mainbox}[1]{
+    colframe=brandblue,
+    base={#1}
+}
+
+% Subboxes don't have any color
+\newtcolorbox{subbox}[1]{
+    colframe=black!20!white,
+    base={#1}
+}
+
+% Package to include images/sketches
+\usepackage{graphicx}
+
+% Mathematical typesetting & symbols
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bigints}
+\usepackage{mathtools}
+\usepackage{wasysym}
+\usepackage{comment}
+
+% Math helper stuff
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\V}{\mathbb{V}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\true}{\texttt{true}}
+\newcommand{\false}{\texttt{false}}
+\newcommand{\NOT}{\texttt{NOT}}
+\newcommand{\AND}{\texttt{AND}}
+\newcommand{\NAND}{\texttt{NAND}}
+\newcommand{\OR}{\texttt{OR}}
+\newcommand{\NOR}{\texttt{NOR}}
+\newcommand{\XOR}{\texttt{XOR}}
+\newcommand{\XNOR}{\texttt{XNOR}}
+\newcommand{\bigO}{\mathcal{O}}
+\newcommand{\comp}{\;\circ\;}
+
+% Package for multi-line comments
+\usepackage{verbatim}
+
+% Path to graphics
+\graphicspath{{images/}}
+
+% Choose section to only show up
+%\includeonly{sections/kanalcodierung}
+
+\begin{document}
+    \include{sections/kombinatorische-logik}
+
+    \include{sections/sequentielle-logik}
+
+    \include{sections/zahlensysteme}
+
+    \include{sections/informationstheorie}
+
+    \include{sections/quellencodierung}
+
+    \include{sections/jpeg}
+
+    \include{sections/audiocodierung}
+
+    \include{sections/kanalcodierung}
+
+    \include{sections/anhang}
+\end{document}

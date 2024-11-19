@@ -1,0 +1,105 @@
+\section{Kombinatorische Logik}\label{sec:kombinatorische-logik}
+
+\subsection{Boolesche Operatoren}\label{subsec:boolesche-operatoren}
+
+\begin{multicols}{4}
+    \begin{center}
+        \begin{tabular}{|c|c|}
+            \hline
+            A & !A \\
+            \hline
+            \hline
+            0 & 1  \\
+            1 & 0  \\
+            \hline
+        \end{tabular}
+    \end{center}
+    \begin{center}
+        \begin{tabular}{|c|c|c|}
+            \hline
+            A & B & A \& B \\
+            \hline
+            \hline
+            0 & 0 & 0      \\
+            0 & 1 & 0      \\
+            1 & 0 & 0      \\
+            1 & 1 & 1      \\
+            \hline
+        \end{tabular}
+    \end{center}
+    \begin{center}
+        \begin{tabular}{|c|c|c|}
+            \hline
+            A & B & A \# B \\
+            \hline
+            \hline
+            0 & 0 & 0      \\
+            0 & 1 & 1      \\
+            1 & 0 & 1      \\
+            1 & 1 & 1      \\
+            \hline
+        \end{tabular}
+    \end{center}
+    \begin{center}
+        \begin{tabular}{|c|c|c|}
+            \hline
+            A & B & A \$ B \\
+            \hline
+            \hline
+            0 & 0 & 0      \\
+            0 & 1 & 1      \\
+            1 & 0 & 1      \\
+            1 & 1 & 0      \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{multicols}
+
+\subsection{Boolesche Algebra}\label{subsec:boolesche-algebra}
+
+\begin{definition}{Gesetze}
+    Es seien die binäre Variablen $A,B,C \in \{ 0,1 \}$ gegeben.
+    Die folgenden Sätze beziehen sich auf $\NOT$, $\AND$ und $\OR$.
+    Beachte, dass einige Sätze nicht für $\XOR$ gelten, z.B.\ das Distributivgesetz.
+    \begin{itemize}
+        \item \textbf{Kommutativgesetz:} Vertauschen von Argumenten eines Operators:
+        \begin{align*}
+            A \& B &= B \& A \\
+            A \# B &= B \# A
+        \end{align*}
+        \item \textbf{Assoziativgesetz:} Reihenfolge der Ausführung bei mehrfachen, identischen Operatoren:
+        \begin{align*}
+            A \& (B \& C) &= (A \& B) \& C \\
+            A \# (B \# C) &= (A \# B) \# C
+        \end{align*}
+        \item \textbf{Distributivgesetz:} Auflösen von Klammern:
+        \begin{align*}
+            A \& (B \# C) &= (A \& B) \# (A \& C) \\
+            A \# (B \& C) &= (A \# B) \& (A \# C)
+        \end{align*}
+    \end{itemize}
+\end{definition}
+\begin{definition}{}
+    In Anlehnung an die klassische Algebra geben wir dem $\AND$-Operator priorität über das $\OR$, sodass Klammern in der Regel nur um $\OR$-Ausdrücke gesetzt werden müssen.
+    \begin{itemize}
+        \item \textbf{Neutrale Elemente:} Operanden ohne Einfluss:
+        \begin{align*}
+            &A \& 1 = A     &A \# 0 = A
+        \end{align*}
+        \item \textbf{Konstante Elemente:} Verknüpfungen mit konstantem Resultat:
+        \begin{align*}
+            &A \& !A = 0    &A \# !A = 1
+        \end{align*}
+        \item \textbf{Reduktionen:} Vereinfachungen:
+        \begin{align*}
+            A \& A = A \ &\text{und} \ A \# A = A \\
+            !(!(A)) &= A \\
+            A \& (A \# B) = A \ &\text{und} \ A \# (A \& B) = A \\
+            A \& (!A \# B) = A \& B \ &\text{und} \ A \# (!A \& B) = A \# B
+        \end{align*}
+        \item \textbf{Satz von De Morgan:} Umwandlung negierter Ausdrücke:
+        \begin{align*}
+            &!(A \& B) = !A \# !B   &!(A \# B) = !A \& !B
+        \end{align*}
+    \end{itemize}
+\end{definition}

@@ -1,0 +1,119 @@
+\section{Zahlensysteme}\label{sec:zahlensysteme}
+
+\begin{comment}
+    \subsection{Vergleich}\label{subsec:vergleich}
+    \begin{center}
+        \begin{tabular}{|c|c|c|}
+            \hline
+            10-er System & 2-er System & 16-er System \\
+            \hline
+            \hline
+            0            & 0000        & 0            \\
+            \hline
+            1            & 0001        & 1            \\
+            \hline
+            2            & 0010        & 2            \\
+            \hline
+            3            & 0011        & 3            \\
+            \hline
+            4            & 0100        & 4            \\
+            \hline
+            5            & 0101        & 5            \\
+            \hline
+            6            & 0110        & 6            \\
+            \hline
+            7            & 0111        & 7            \\
+            \hline
+            8            & 1000        & 8            \\
+            \hline
+            9            & 1001        & 9            \\
+            \hline
+            10           & 1010        & A            \\
+            \hline
+            11           & 1011        & B            \\
+            \hline
+            12           & 1100        & C            \\
+            \hline
+            13           & 1101        & D            \\
+            \hline
+            14           & 1110        & E            \\
+            \hline
+            15           & 1111        & F            \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{comment}
+
+\subsection{Umrechnung}\label{subsec:umrechnung}
+
+\textbf{10-er ins 16-er System:} In einem Beispiel wollen 100 ins 16-er System umwandeln
+\begin{align*}
+    100_d \div 16 &= 6 \text{ Rest } 4 \\
+    6 \div 16 &= 0 \text{ Rest } 6
+\end{align*}
+Es folgt: $100_d = 64_h$
+
+Überprüfung: $64_h = 6 \cdot 16_d^1 + 4 \cdot 16_d^0 = 100_d$
+
+\textbf{10-er ins 2-er System:} In diesem Beispiel wollen sehen, wie Zahlen mit Kommastellen umgewandelt werden.
+Wir wählen hierzu den Wert $26.6875_d$, den wir zu Beginn zerlegen: $26.6875_d = 26_d + 0.6875_d$.
+
+Zuerst wandeln wir den ganzzahligen Teil um:
+\begin{align*}
+    26_d \div 2 &= 13 \text{ Rest } 0 \\
+    13_d \div 2 &= 6 \text{ Rest } 1 \\
+    6_d \div 2 &= 3 \text{ Rest } 0 \\
+    3_d \div 2 &= 1 \text{ Rest } 1 \\
+    1_d \div 2 &= 0 \text{ Rest } 1
+\end{align*}
+Wir erhalten also: $26_d = 11010_b$
+
+Wir wandeln nun den Bruchteil mithilfe des Horner-Schemas um:
+\begin{align*}
+    0.6875_d \cdot 2 &= 0.3750 + 1 \\
+    0.3750_d \cdot 2 &= 0.7500 + 0 \\
+    0.7500_d \cdot 2 &= 0.5000 + 1 \\
+    0.5000_d \cdot 2 &= 0.0000 + 1
+\end{align*}
+Hier erhalten wir also: $0.6875_d = 0.1011_b$
+
+Es folgt das Resultat: $26.6875_d = 11010.1011_b$
+
+\subsection{Negative Zahlen}\label{subsec:negative-zahlen}
+
+Wir haben die Zahl $-3.125_d$, die wir im 2-er System darstellen wollen.
+Zu Beginn wandeln wir die Zahl ins 2-er System um: $3.125_d = 110.001_b$.
+Anschliessend invertieren wir alle Bits und addieren 1 dazu:
+\begin{center}
+    \begin{tabular}{cccc}
+        Ursprüngliche Zahl & $\dots 0 \ 0 \ 1 \ 1 \ 0. \ 0 \ 0 \ 1$ & b \\
+        \hline
+        1-er Komplement    & $\dots 1 \ 1 \ 0 \ 0 \ 1. \ 1 \ 1 \ 0$ & b \\
+        \hline
+        2-er Komplement    & $\dots 1 \ 1 \ 0 \ 0 \ 1. \ 1 \ 1 \ 1$ & b
+    \end{tabular}
+\end{center}
+Diese Technik heisst 2-er Komplement und wird genutzt, um das Vorzeichen von Binärzahlen zu wechseln.
+
+\subsection{Endliche Zahlen}\label{subsec:endliche-zahlen}
+
+\begin{center}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        Register & Bezeichnung & \multicolumn{2}{c|}{Maximal darstellbare Zahl} \\
+        \hline
+        \hline
+        4 Bit   & Nibble ($\frac{1}{2}$ Byte) & $0 \dots 15_d$                 & $-8 \dots \text{+}7$                                   \\
+        \hline
+        8 Bit   & Byte                        & $0 \dots 255_d$                & $-128 \dots \text{+}127$                               \\
+        \hline
+        16 Bit  & Word                        & $0 \dots 65'535_d$             & $-32'768 \dots \text{+}32'767$                         \\
+        \hline
+        32 Bit  & Double Word                 & $0 \dots 4.29_d \cdot 10^9$    & $-2.15 \cdot 10^9 \dots \text{+}2.15 \cdot 10^9$       \\
+        \hline
+        64 Bit  & Long Word                   & $0 \dots 1.84_d \cdot 10^{19}$ & $-9.22 \cdot 10^{18} \dots \text{+}9.22 \cdot 10^{18}$ \\
+        \hline
+        128 Bit & Double Long Word            & $0 \dots 3.40_d \cdot 10^{38}$ & $-1.70 \cdot 10^{38} \dots \text{+}1.70 \cdot 10^{38}$ \\
+        \hline
+    \end{tabular}
+\end{center}

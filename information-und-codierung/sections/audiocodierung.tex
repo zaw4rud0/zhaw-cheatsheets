@@ -1,0 +1,38 @@
+\section{Audio-Codierung}\label{sec:audio-codierung}
+
+\begin{definition}{}
+    \textbf{Abtasttheorem von Shannon:} $F_{\text{abtast}} > 2 \cdot f_{\max}$
+\end{definition}
+
+\subsection{Pulse Code Modulation (PCM)}\label{subsec:pulse-code-modulation}
+\begin{itemize}
+    \item \textbf{Filterung:} Zu hohe und zu tiefe Frequenzen werden entfernt, sodass der hörbare Frequenzbereich (etwa 20--20kkHz) übrig bleibt.
+    \item \textbf{Abtastung:} Ein zeitkontinuierliches Signal wird in ein zeitdiskretes Signal umgewandelt, indem es in regelmäßigen Abständen registriert wird.
+    \item \textbf{Quantisierung:} Die Anzahl Bit, die für die Quantisierung verwendet werden, bestimmt die Anzahl Stufen, welche für die Messung der Amplitude zur Verfügung stehen.
+    Die gemessenen Werte werden der nächsten Stufe gerundet zugeordnet.
+    Dabei entsteht ein Fehler, der sogenannte \emph{Quantisierungsfehler}.
+    \item \textbf{Codierung:} Jedem quantisierten Messwert wird ein Wert von einer bestimmten Bitlänge zugeordnet.
+    Aufgrund der Abtastrate entsteht somit ein Bitstrom, der berechnet werden kann mit: \[\text{Anzahl Bit pro Messwert} \cdot \text{Abtastfrequenz}.\]
+\end{itemize}
+
+\subsection{Wave File Format}\label{subsec:wave-file-format}
+
+Das \emph{wave}-Dateiformat ist ein Containerformat zur digitalen Speicherung von Audiodaten, wobei der Header Informationen über die Audiodaten enthält.
+Wave-Dateien enthalten normalerweise keine komprimierten Audiodaten, sondern die PCM-Rohdaten.
+Die Qualität des aufgezeichneten Klangs hängt dann von zwei Werten ab, der Abtastrate (Anzahl Abtastungen pro Zeiteinheit) und der Auflösung der Quantisierung (Bit-Tiefe).
+
+Der File Header besteht aus 44 Byte mit verschiedenen Informationen, wie Format, Anzahl Kanäle, Samples pro Sekunde, Bit pro Sample und Länge der Rohdaten.
+Anschliessend folgen die digitalen Audio-Daten, jeweils abwechselnd pro Kanal.
+
+\subsection{Verlustfreie Audio-Codierung}\label{subsec:verlustfreie-audio-codierung}
+
+Im Gegensatz zu verlustbehaftete Audiodatenkompressionsverfahren wie MP3 oder Ogg Vorbis ist die Komprimierung bei FLAC verlustfrei, es gibt also keine Qualitätseinbusse.
+Dafür sind die komprimierte Dateien aber auch um ein Vielfaches grösser.
+
+\subsection{Verlustbehaftete Audio-Codierung}\label{subsec:verlustbehaftete-audio-codierung}
+
+\begin{definition}{Schalldruckpegel}
+    Um verlustbehaftete Codierung durchführen zu können, braucht es den \emph{Schalldruckpegel}, der die Stärke eines Schallereignisses beschreibt und folgendermassen berechnet wird:
+    \[L_P = 10 \log_{10} \left( \frac{\tilde{p}^2}{p_0^2} \right)) \ \text{dB} = 20 \log_{10} \left( \frac{\tilde{p}}{p_0} \right) \ \text{dB},\] wobei $\tilde{p}$ der effektive Schalldruck in Pa ist und $p_0$ der Schalldruckpegel bei einer Schallstärke von 1kHz ist (international auf $0.00002$ Pa gesetzt).
+\end{definition}
+Eine Verdopplung des effektiven Schalldrucks $p$ entspricht einer Zunahme des Schallpegels um rund \textbf{6dB}, weil \[20 \cdot \log_{10}(2) = 6.02 \ \text{dB}\]

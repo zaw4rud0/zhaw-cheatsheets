@@ -1,0 +1,36 @@
+\section{Informationstheorie}\label{sec:informationstheorie}
+
+\subsection{Information}\label{subsec:information}
+
+\begin{definition}{Datenquelle}
+    \begin{itemize}
+        \item \textbf{DMS} (Discrete Memoryless Source): Diese Quelle liefert einzelne Nachrichten, die unabhängig voneinander und gleichverteilt sind (\emph{discrete}), und sie merkt sich die vergangene Nachricht nicht (\emph{memoryless}).
+        Folglich sind aufeinanderfolgende Symbole (statistisch) voneinander unabhängig.
+        \item \textbf{BMS} (Binary Memoryless Source): Bei dieser Quelle handelt es sich um eine DMS, die aber nur zwei verschiedene Ereignisse erzeugt.
+    \end{itemize}
+\end{definition}
+
+\begin{definition}{Wahrscheinlichkeit}
+    Für die Wahrscheinlichkeit $P(x_n)$ eines Ereignisses $x_n$ gilt: \[P(x_n) = \frac{\text{Anzahl der Ergebnisse, bei denen das Ereignis $x_n$ eintritt}}{\text{Anzahl aller mögliche Ergebnisse}} = \frac{|x_n|}{|\Omega|}.\]
+\end{definition}
+
+\begin{definition}{Informationsgehalt}
+    Der Informationsgehalt $I(X)$ beim Auftreten von $X_k = x_n$ ist definiert als: \[I = \log_2 \frac{1}{P(x_n)} = -\log_2 P(x_n). \quad \text{[\emph{Bit}]}\]
+    Die Masseinheit der Information gibt an, wie viele Bits für das Codieren des betreffenden Symbols notwendig wären, wenn alle Symbole dieselbe Auftretenswahrscheinlichkeit hätten.
+\end{definition}
+
+\subsection{Entropie}\label{subsec:entropie}
+
+\begin{definition}{Definition}
+    Eine Datenquelle hat eine tiefe Entropie, wenn das nächste Ereignis (Symbol) mit hoher Wahrscheinlichkeit korrekt vorhersagbar ist.
+    Wenn diese Wahrscheinlichkeit klein ist, dann ist die Entropie hoch.
+\end{definition}
+
+\begin{definition}{Entropie von Quellen}
+    Die Entropie $H(X)$ einer Quelle $X$, die statistisch unabhängige Symbole (Ereignisse) $x_n$ liefert, ist definiert als der Erwartungswert der Information $I(x_n)$ dieser Symbole: \[H(X) = \sum_{n=0}^{N-1} P(x_n) \cdot I(x_n)\]
+    Die vollständige Formel ist also: \[H(X) = \sum_{n=0}^{N-1} P(x_n) \cdot \log_2 \frac{1}{P(x_n)} = -\sum_{n=0}^{N-1} P(x_n) \cdot \log_2 P(x_n). \quad \text{[\emph{Bit/Symbol}]}\]
+\end{definition}
+
+\begin{definition}{Entropie eines BMS (Binäre Entropiefunktion)}
+    \[H_b = p \cdot \log_2 \frac{1}{p} + (1-p) \cdot \log_2 \frac{1}{1-p} \quad \text{[\emph{Bit/Symbol}]}\]
+\end{definition}

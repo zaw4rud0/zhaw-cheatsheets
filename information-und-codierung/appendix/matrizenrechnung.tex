@@ -1,0 +1,68 @@
+\begin{definition}{Matrix}
+    Eine \emph{Matrix} ist in der Mathematik eine Anordnung von Werten in Zeilen und Spalten.
+    Eine Matrix mit $m$ Zeilen und $n$ Spalten wird als $m \times n$ Matrix bezeichnet und kann wie folgt dargestellt werden:
+    \[A = \begin{bmatrix}
+              a_{1,1} & a_{1,2} & \dots  & a_{1,n} \\
+              \vdots  & \vdots  & \ddots & \vdots  \\
+              a_{m,1} & a_{m,2} & \dots  & a_{m,n}
+    \end{bmatrix}\]
+\end{definition}
+
+\begin{definition}{Matrizenmultiplikation}
+    Damit Matrizen multipliziert werden können, muss die Anzahl der Spalten der linken Matrix gleich der Anzahl der Zeilen der rechten Matrix sein.
+    Es seien die Matrizen $A \in \R^{m \times n}$ und $B \in \R^{n \times p}$.
+    Die Matrix $C = AB$ ist dann die $m \times p$ Matrix, deren Elemente durch die Formel \[c_{ij} = a_{i1}b_{1j} + a_{i2}b_{2j} + \dots + a_{in}b_{nj} = \sum_{k=1}^{n} a_{ik}b_{kj}\] berechnet werden, wobei $i = 1,\dots,m$ und $j = 1,\dots,p$ sind. $AB \neq BA$!
+\end{definition}
+
+\textbf{Beispiel:} Es seien die Matrizen
+$A =
+\begin{bmatrix}
+    1 & 2 \\
+    3 & 4
+\end{bmatrix}$ und $B =
+\begin{bmatrix}
+    5 & 6 \\
+    7 & 8
+\end{bmatrix}$.
+Dann ist \[AB =
+\begin{bmatrix}
+    1 \cdot 5 + 2 \cdot 7 & 1 \cdot 6 + 2 \cdot 8 \\
+    3 \cdot 5 + 4 \cdot 7 & 3 \cdot 6 + 4 \cdot 8
+\end{bmatrix} =
+\begin{bmatrix}
+    19 & 22 \\
+    43 & 50
+\end{bmatrix}.\]
+
+\begin{subbox}{Rechenregeln für Matrizen}
+    Für die drei Matrizen $A,B,C \in \R^{n \times n}$ gelten folgende Rechenregeln:
+    \begin{align*}
+        A + B &= B + A &(Kommutativgesetz) \\
+        A + (B + C) &= (A + B) + C &(Assoziativgesetz) \\
+        C(A + B) &= CA + CB &(Distributivgesetz) \\
+        (A + B)C &= AC + BC &(Distributivgesetz) \\
+        A(BC) &= (AB)C &(Assoziativgesetz)
+    \end{align*}
+\end{subbox}
+
+\begin{definition}{Einheitsmatrix}
+    Die Einheitsmatrix $I$ ist eine quadratische Matrix, deren Matrixelemente der Hauptdiagonalen alle 1 betragen.
+    Alle übrigen Elemente sind 0.
+    Beispiele: $I_2 = \begin{bmatrix}
+                           1 0 \\
+                           0 1
+    \end{bmatrix} \quad \quad I_3 = \begin{bmatrix}
+                                        1 0 0 \\
+                                        0 1 0 \\
+                                        0 0 1
+    \end{bmatrix}$
+\end{definition}
+
+\begin{definition}{Inverse Matrix}
+    Eine quadratische Matrix $A$ ist invertierbar, falls eine Matrix $A^{-1}$ existiert, sodass $AA^{-1} = A^{-1}A = I$
+\end{definition}
+
+\begin{definition}{Transponierte einer Matrix}
+    Beim Transponieren einer Matrix $A$ werden die Zeilen von $A$ zu Spalten von $A^T$ und die Spalten von $A$ zu Zeilen von $A^T$.
+    Dies entspricht einer Spiegelung der Matrix an der Diagonalen.
+\end{definition}
